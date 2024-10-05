@@ -25,7 +25,7 @@ Players are the people that play the games together.
 
 A game is a specific virtual tabletop that a group of players are playing on together.
 
-* GAF01: Players can create games, which have a name and a description.
+* GAF01: Players can create games, which have a name and optionally a description.
 
 * GAF02: For a specific game, players can be assigned the role of "Game Master" (GM) which can grant them additional priviledges.
 
@@ -63,13 +63,11 @@ Layers are used to organise Pieces such that they're drawn in the correct order,
 
 * LAF02: A layer can contain any number of Pieces, which it will render.
 
-* LAF03: Players can create new layers.
+* LAF03: GM Players can create new layers.
 
-* LAF04: Players can rename layers.
+* LAF04: GM Players can rename layers.
 
-* LAF05: Players can move Pieces from one layer to another.
-
-* LAF06: A layer can be "locked" such that it's not possible to modify it without first unlocking it.
+* LAF05: GM Players can move Pieces from one layer to another.
 
 ### Pieces
 
@@ -81,7 +79,7 @@ Pieces are the digital representation of physical objects, like tokens, characte
 
 * PIF03: A piece is an instance of an Asset, and therefore will have a reference to an Asset.
 
-* PIF04: A piece also has a z postion, to determine the order its rendered in within its layer.
+* PIF04: A piece also has a z index, to determine the order its rendered in within its layer.
 
 * PIF05: Pieces can only belong in one layer.
 
@@ -93,11 +91,15 @@ Pieces are the digital representation of physical objects, like tokens, characte
 
 * PIF09: A piece has a scale which can be used to alter its size.
 
-* PIF10: Multiple pieces can be selected at once.  Any actions, for example movement, will be applied to all selected pieces simultaneously.
+* PIF10: A piece has a hidden boolean property that indicates if it is hidden from non-GM Players.
 
-* PIF11: All changes to pieces within a Scene Layer, including but not limited to creating, removing, moving, and scaling, will be synchronised between all of the games connected players in realtime.
+* PIF11: Multiple pieces can be selected at once.  Any actions, for example movement, will be applied to all selected pieces simultaneously.
 
-* PIF12: A Piece can have any number of child Pieces.  A child Piece's position and z is relative to its parent Piece.  A child piece must be within the same scene, but does not necessarily have to be within the same layer.
+* PIF12: All changes to pieces within a Scene Layer, including but not limited to creating, removing, moving, and scaling, will be synchronised between all of the games connected players in realtime.
+
+* PIF13: If a Piece's Asset is deleted, it will instead switch to being a "Default" version of that type of Asset.
+
+* PIF14: A piece has an owner Player, which defaults to the Player that created it.  By default only the owner of a Piece and Players with the GM role can manipulate it.
 
 ### Assets
 
@@ -115,11 +117,20 @@ Assets are what pieces are made from - they can be maps, tokens, effect template
 
 * ASF06: An asset browser needs to be provided that lets players select Assets to be brought into their Scenes as Pieces.
 
-* ASF07: The asset browser will let Players search their assets by name and tags.
+* ASF07: The asset browser will let Players search their assets by name, tags, and game.
 
+* ASF08: Assets will be owned by a Player and by default only they will have visibility of and access to their assets.
+
+* ASF09: Each player will have a, server-configurable, storage limit for their assets.  They will be unable to upload assets if they do not have sufficient storage.
+
+* ASF10: Players will be able to delete their assets.  If the asset is currently in use by a Piece in a Game, they will be informed of which games their assets are being used in and asked to confirm.
+
+* ASF11: When an Asset is added to a Game, it will be synchronised with all connected GM Players and be available to be served to all Players.
 
 ## Future Considerations
 
 * FC01: Support for localisation should be baked in.  While we'll only support English initially, it should be minimal effort to add other languages/localisations.
 
 * FC02: While Assets and therefore Pieces will just be images for now, we'll want to support other types of Assets and Pieces in the future, including but not limited to: text, characters, sound, light, interactive elements, and more.
+
+* FC03: In the future we'll want to allow Piece owners and GM Players to be able to assign permission to manipulate pieces to one or more Players.
