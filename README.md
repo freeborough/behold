@@ -1,7 +1,8 @@
 Behold
 ======
 
-Open source Virtual Tabletop service to let players connect with each other to play tabletop games online.
+Open source Virtual Tabletop service to let players connect with each other to play tabletop games
+online.
 
 ## Documentation
 
