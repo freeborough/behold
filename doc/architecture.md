@@ -19,3 +19,10 @@ help us with things like: immediately getting back to the player, deal with serv
 service mocking for testing, rate limiting, and more.
 
 ![C4 Container Diagram](./images/c4-containers.drawio.svg)
+
+## Components
+
+This covers the entire VTT application rather than just one container, as the other containers, like
+the email worker, are very simple.
+
+![C4 Components Diagram](./images/c4-components.drawio.svg)
