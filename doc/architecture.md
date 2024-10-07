@@ -22,7 +22,9 @@ service mocking for testing, rate limiting, and more.
 
 ## Components
 
-Note that both the REST API and WebSocket API use the shared Database API, however in each diagram I have included the parts of the Database API that each component uses, and not done a separate diagram for the Database API specifically as it wouldn't tell us anything new.
+Note that both the REST API and WebSocket API use the shared Database API, however in each diagram I
+have included the parts of the Database API that each component uses, and not done a separate
+diagram for the Database API specifically as it wouldn't tell us anything new.
 
 ### REST API
 
