@@ -166,3 +166,5 @@ to start with we'll just support images.
 
 * FC3: In the future we'll want to allow Piece owners and GM Players to be able to assign
   permission to manipulate pieces to one or more Players.
+
+* FC4: There will be eventually other types of users, not just players, for example administrators and content creators.  Therefore we should have a User entity and related roles, rather than a Player entity.
