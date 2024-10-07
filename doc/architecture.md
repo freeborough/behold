@@ -22,7 +22,16 @@ service mocking for testing, rate limiting, and more.
 
 ## Components
 
-This covers the entire VTT application rather than just one container, as the other containers, like
-the email worker, are very simple.
+Note that both the REST API and WebSocket API use the shared Database API, however in each diagram I have included the parts of the Database API that each component uses, and not done a separate diagram for the Database API specifically as it wouldn't tell us anything new.
 
-![C4 Components Diagram](./images/c4-components.drawio.svg)
+### REST API
+
+![REST API: C4 Components Diagram](./images/c4-components-rest.drawio.svg)
+
+### WebSocket API
+
+![WebSocket API: C4 Components Diagram](./images/c4-components-websocket.drawio.svg)
+
+### Email Worker
+
+![Email Worker: C4 Components Diagram](./images/c4-components-email-worker.drawio.svg)
