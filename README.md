@@ -8,3 +8,4 @@ online.
 
 * [Requirements](./doc/requirements.md)
 * [Architecture](./doc/architecture.md)
+* [Entities](./doc/entities.md)
