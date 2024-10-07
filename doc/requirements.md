@@ -46,6 +46,8 @@ A game is a specific virtual tabletop that a group of players are playing on tog
 
 * GAF7: When a player first connects to a game, its entire state is sent to them.
 
+* GAF8: A game has a unique slug, a piece of text that is used to refer to the game in URLs.
+
 ### Scenes
 
 A scene is essentially its own virtual tabletop upon which a game is played.  Some games,
