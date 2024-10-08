@@ -1,6 +1,8 @@
 BEHOLD VTT: ENTITIES
 ====================
 
+![Entity Relationship Diagram](./images/erd.drawio.svg)
+
 ## User
 
 | Field    | Type   | Tags   | Comments
