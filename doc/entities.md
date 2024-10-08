@@ -26,7 +26,7 @@ BEHOLD VTT: ENTITIES
 | ------------- | ------- | -------- | --------
 | id            | bigint  | pk       | 
 | game_id       | bigint  | fk       | A game the user belongs to.  References Game.id.
-| player_id     | bigint  | fk       | A user that is a player of the game.  References User.id.
+| user_id       | bigint  | fk       | A user that is a player of the game.  References User.id.
 | role          | enum    |          | The role that the user has in the game: [gm, player].
 
 ## Scene
