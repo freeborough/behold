@@ -37,3 +37,7 @@ diagram for the Database API specifically as it wouldn't tell us anything new.
 ### Email Worker
 
 ![Email Worker: C4 Components Diagram](./images/c4-components-email-worker.drawio.svg)
+
+### Single Page Application
+
+![Single Page Application: C4 Components Diagram](./images/c4-components-spa.drawio.svg)
