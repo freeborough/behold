@@ -13,4 +13,5 @@ online.
 * [Requirements](./doc/requirements.md)
 * [Architecture](./doc/architecture.md)
 * [Entities](./doc/entities.md)
+* [Wireframes](./doc/wireframes.md)
 * [Future](./doc/future.md)
