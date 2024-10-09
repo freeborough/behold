@@ -7,7 +7,7 @@ BEHOLD VTT: ENTITIES
 
 | Field    | Type   | Tags   | Comments
 | -------- | ------ | -------| --------
-| id       | bigint | pk     | 
+| id       | uuid   | pk     | 
 | username | text   | unique | Users login with their email address.
 | salt     | text   |        | Generated salt used to hash the password.
 | password | text   |        | Password hashed using the salt and original plain text password.
@@ -16,27 +16,27 @@ BEHOLD VTT: ENTITIES
 
 | Field       | Type    | Tags     | Comments
 | ----------- | ------- | -------- | --------
-| id          | bigint  | pk       | 
+| id          | uuid    | pk       | 
 | name        | text    |          | The name of the game, visible to all users with read access to the game.
 | description | text    | optional | Optional short description of the game.
-| owner_id    | bigint  | fk       | The user that created and therefore owns the game. References User.id.
+| owner_id    | uuid    | fk       | The user that created and therefore owns the game. References User.id.
 | slug        | text    | unique   | Unique identifier of the game that can be used in URLs.
 
 ## GamePlayer
 
 | Field         | Type    | Tags     | Comments
 | ------------- | ------- | -------- | --------
-| id            | bigint  | pk       | 
-| game_id       | bigint  | fk       | A game the user belongs to.  References Game.id.
-| user_id       | bigint  | fk       | A user that is a player of the game.  References User.id.
+| id            | uuid    | pk       | 
+| game_id       | uuid    | fk       | A game the user belongs to.  References Game.id.
+| user_id       | uuid    | fk       | A user that is a player of the game.  References User.id.
 | role          | enum    |          | The role that the user has in the game: [gm, player].
 
 ## Scene
 
 | Field       | Type    | Tags     | Comments
 | ----------- | ------- | -------- | --------
-| id          | bigint  | pk       | 
-| game_id     | bigint  | fk       | The game that this scene belongs to.
+| id          | uuid    | pk       | 
+| game_id     | uuid    | fk       | The game that this scene belongs to.
 | name        | text    |          | The name of the scene, visible to everyone with read access.
 | visible     | boolean |          | Indicates whether the Scene is visible to users with the Player role or not. Defaults to false.
 
@@ -44,17 +44,17 @@ BEHOLD VTT: ENTITIES
 
 | Field       | Type    | Tags     | Comments
 | ----------- | ------- | -------- | --------
-| id          | bigint  | pk       | 
-| scene_id    | bigint  | fk       | The scene that this layer belongs to.
+| id          | uuid    | pk       | 
+| scene_id    | uuid    | fk       | The scene that this layer belongs to.
 | name        | text    |          | The name of the layer, as visible in the scene tree.
 
 ## Asset
 
 | Field       | Type    | Tags     | Comments
 | ----------- | ------- | -------- | --------
-| id          | bigint  | pk       | 
+| id          | uuid    | pk       | 
 | name        | text    |          | The name of the asset.
-| owner_id    | bigint  | fk       | The user that created the asset, and is therefore the owner.
+| owner_id    | uuid    | fk       | The user that created the asset, and is therefore the owner.
 | url         | text    |          | URL that points to the asset's data (either externally or locally).
 | tags        | text[]  |          | List of tags that are associated with this asset.
 
@@ -62,18 +62,18 @@ BEHOLD VTT: ENTITIES
 
 | Field       | Type    | Tags     | Comments
 | ----------- | ------- | -------- | --------
-| id          | bigint  | pk       | 
-| game_id     | bigint  | fk       | The game the asset is associated with.
-| asset_id    | bigint  | fk       | The asset that is associated with a game.
+| id          | uuid    | pk       | 
+| game_id     | uuid    | fk       | The game the asset is associated with.
+| asset_id    | uuid    | fk       | The asset that is associated with a game.
 
 ## Piece
 
 | Field       | Type    | Tags     | Comments
 | ----------- | ------- | -------- | --------
-| id          | bigint  | pk       | 
-| owner_id    | bigint  | fk       | The user that created, and therefore owns, the piece.
-| layer_id    | bigint  | fk       | The layer that this piece belongs to.
-| asset_id    | bigint  | fk       | The asset that this piece is an instance of.
+| id          | uuid    | pk       | 
+| owner_id    | uuid    | fk       | The user that created, and therefore owns, the piece.
+| layer_id    | uuid    | fk       | The layer that this piece belongs to.
+| asset_id    | uuid    | fk       | The asset that this piece is an instance of.
 | x           | real    |          | The x position of the peice within its layer.  Defaults to 0.0.
 | y           | real    |          | The y position of the piece within its layer.  Defaults to 0.0.
 | z           | int     |          | The z-index of the piece within its layer.  Defaults to 0.
