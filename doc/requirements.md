@@ -166,4 +166,10 @@ to start with we'll just support images.
 * FC3: In the future we'll want to allow Piece owners and GM Players to be able to assign
   permission to manipulate pieces to one or more Players.
 
-* FC4: There will be eventually other types of users, not just players, for example administrators and content creators.  Therefore we should have a User entity and related roles, rather than a Player entity.
+* FC4: There will be eventually other types of users, not just players, for example administrators
+  and content creators.  Therefore we should qhave a User entity and related roles, rather than a
+  Player entity.
+
+* FC5: We will eventually want to support large and complex scenes and more advanced scene rendering
+  features like fog of war, line of sight, dynamic lighting, lines and shapes, particles, and more.
+  Therefore rather than using HTML to render a scene, we should use Canvas.
