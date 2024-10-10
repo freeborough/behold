@@ -6,6 +6,10 @@ BEHOLD VTT: REQUIREMENTS
 Behold is a Virtual Tabletop (VTT) service that lets players create games and invite other players
 to join them on a shared virtual tabletop that updates in realtime.
 
+This first phase is to produce a Minimum Viable Product (MVP).  It does not contain most of the basic features of many popular VTT applications, let alone any of the wonderful features I want from a VTT.
+
+The core goal of this phase is to get an end-to-end product that can be used in some, limited, capacity that provides a solid foundation in which to build out the rest of the application.
+
 ## Non-Functional
 
 * NF1: Players will be able to use the system from their browser on desktop, tablet, and mobile.
