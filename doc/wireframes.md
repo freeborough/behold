@@ -1,8 +1,6 @@
 BEHOLD VTT: WIREFRAMES
 ======================
 
-***\*\*\* INCOMPLETE \*\*\****
-
 ## Login
 
 ![Wireframe: Login](./images/wireframes/login.drawio.svg)
@@ -19,6 +17,16 @@ BEHOLD VTT: WIREFRAMES
 
 ![Wireframe: Games](./images/wireframes/games.drawio.svg)
 
-## Game / Game
+## Game
 
-![Wireframe: Game / Game](./images/wireframes/game-game.drawio.svg)
+### Game Tab
+
+![Wireframe: Game / Game Tab](./images/wireframes/game-game.drawio.svg)
+
+### Assets Tab
+
+![Wireframe: Game / Assets Tab](./images/wireframes/game-assets.drawio.svg)
+
+### Scene Tab
+
+![Wireframe: Game / Scene Tab](./images/wireframes/game-scene.drawio.svg)
