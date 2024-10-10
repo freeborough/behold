@@ -6,7 +6,7 @@ online.
 
 | Phase                      | Status
 | -------------------------- | ------
-| [1] Minimum Viable Product | Design
+| [1] Minimum Viable Product | Pre-Alpha
 
 ## Documentation
 
