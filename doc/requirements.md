@@ -139,8 +139,6 @@ to start with we'll just support images.
 * ASF4: There are different kinds of assets, therefore an asset will have a "kind" that indicates
   which.  Where possible, this will be automatically determined.
 
-* ASF5: Assets can be associated with a specific Game, but are not limited to just one game.
-
 * ASF6: An asset browser needs to be provided that lets players select Assets to be brought into
   their Scenes as Pieces.
 
@@ -155,9 +153,6 @@ to start with we'll just support images.
 * ASF10: Players will be able to delete their assets.  If the asset is currently in use by a Piece
   in a Game, they will be informed of which games their assets are being used in and asked to
   confirm.
-
-* ASF11: When an Asset is added to a Game, it will be synchronised with all connected GM Players and
-  be available to be served to all Players.
 
 ## Future Considerations
 
