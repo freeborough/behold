@@ -1,0 +1,24 @@
+{
+  "name": "behold",
+  "version": "0.1.0",
+  "description": "Open source Virtual Tabletop service to let players connect with each other to play tabletop games online.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freeborough/behold.git"
+  },
+  "keywords": [
+    "vtt",
+    "tabletop",
+    "service",
+    "game"
+  ],
+  "author": "Andy Freeborough <andy@freeborough.com>",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/freeborough/behold/issues"
+  },
+  "homepage": "https://github.com/freeborough/behold#readme"
+}
