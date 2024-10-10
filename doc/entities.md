@@ -58,14 +58,6 @@ BEHOLD VTT: ENTITIES
 | url         | text    |          | URL that points to the asset's data (either externally or locally).
 | tags        | text[]  |          | List of tags that are associated with this asset.
 
-## GameAsset
-
-| Field       | Type    | Tags     | Comments
-| ----------- | ------- | -------- | --------
-| id          | uuid    | pk       | 
-| game_id     | uuid    | fk       | The game the asset is associated with.
-| asset_id    | uuid    | fk       | The asset that is associated with a game.
-
 ## Piece
 
 | Field       | Type    | Tags     | Comments
