@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
   <diagram name="Page-1" id="03018318-947c-dd8e-b7a3-06fadd420f32">
-    <mxGraphModel dx="1231" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="721" dy="406" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -19,8 +19,8 @@
         <mxCell id="a_xUBQwBy6rDpvlgd22E-7" value="User Name" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="470" y="125" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="a_xUBQwBy6rDpvlgd22E-20" value="Join Game" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="20" y="180" width="130" height="30" as="geometry" />
+        <mxCell id="a_xUBQwBy6rDpvlgd22E-20" value="Enter Invite Code" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="170" y="180" width="130" height="30" as="geometry" />
         </mxCell>
         <mxCell id="a_xUBQwBy6rDpvlgd22E-21" value="" style="group" parent="1" vertex="1" connectable="0">
           <mxGeometry x="20" y="230" width="280" height="160" as="geometry" />
@@ -35,40 +35,49 @@
           <mxGeometry x="20" y="62.85571428571429" width="240" height="34.28571428571429" as="geometry" />
         </mxCell>
         <mxCell id="a_xUBQwBy6rDpvlgd22E-25" value="Join" style="rounded=1;whiteSpace=wrap;html=1;" parent="a_xUBQwBy6rDpvlgd22E-21" vertex="1">
-          <mxGeometry x="170" y="131.42857142857142" width="90" height="17.142857142857146" as="geometry" />
+          <mxGeometry x="180" y="131.42857142857142" width="90" height="17.142857142857146" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-1" value="" style="group" vertex="1" connectable="0" parent="1">
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-1" value="Withdraw" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="a_xUBQwBy6rDpvlgd22E-21">
+          <mxGeometry x="80" y="131.42857142857144" width="90" height="17.142857142857146" as="geometry" />
+        </mxCell>
+        <mxCell id="_uUnB0Orezx1W5GLMP9N-9" value="Create New Game" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="180" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-2" value="" style="group" vertex="1" connectable="0" parent="1">
           <mxGeometry x="320" y="230" width="280" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="_uUnB0Orezx1W5GLMP9N-1">
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-2">
           <mxGeometry width="280" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-3" value="Game Name" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" vertex="1" parent="_uUnB0Orezx1W5GLMP9N-1">
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-4" value="Game Name" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-2">
           <mxGeometry x="20" y="19.99857142857143" width="240" height="17.142857142857146" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-4" value="Game description.&amp;nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0" vertex="1" parent="_uUnB0Orezx1W5GLMP9N-1">
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-5" value="Game description.&amp;nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-2">
           <mxGeometry x="20" y="62.85571428571429" width="240" height="34.28571428571429" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-5" value="Join" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="_uUnB0Orezx1W5GLMP9N-1">
-          <mxGeometry x="170" y="131.42857142857142" width="90" height="17.142857142857146" as="geometry" />
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-6" value="Join" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-2">
+          <mxGeometry x="180" y="131.42857142857142" width="90" height="17.142857142857146" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-9" value="Create New Game" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="170" y="180" width="130" height="30" as="geometry" />
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-7" value="Withdraw" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-2">
+          <mxGeometry x="80" y="131.42857142857144" width="90" height="17.142857142857146" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-10" value="" style="group" vertex="1" connectable="0" parent="1">
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-15" value="" style="group" vertex="1" connectable="0" parent="1">
           <mxGeometry x="20" y="410" width="280" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-11" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="_uUnB0Orezx1W5GLMP9N-10">
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-15">
           <mxGeometry width="280" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-12" value="Game Name" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" vertex="1" parent="_uUnB0Orezx1W5GLMP9N-10">
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-17" value="Game Name" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-15">
           <mxGeometry x="20" y="19.99857142857143" width="240" height="17.142857142857146" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-13" value="Game description.&amp;nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0" vertex="1" parent="_uUnB0Orezx1W5GLMP9N-10">
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-18" value="Game description.&amp;nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-15">
           <mxGeometry x="20" y="62.85571428571429" width="240" height="34.28571428571429" as="geometry" />
         </mxCell>
-        <mxCell id="_uUnB0Orezx1W5GLMP9N-14" value="Join" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="_uUnB0Orezx1W5GLMP9N-10">
-          <mxGeometry x="170" y="131.42857142857142" width="90" height="17.142857142857146" as="geometry" />
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-19" value="Join" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-15">
+          <mxGeometry x="180" y="131.42857142857142" width="90" height="17.142857142857146" as="geometry" />
+        </mxCell>
+        <mxCell id="YoHRcW7AfZJW7l2J4kEc-20" value="Delete" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="YoHRcW7AfZJW7l2J4kEc-15">
+          <mxGeometry x="80" y="131.42857142857144" width="90" height="17.142857142857146" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
