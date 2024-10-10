@@ -19,8 +19,6 @@ BEHOLD VTT: WIREFRAMES
 
 ![Wireframe: Games](./images/wireframes/games.drawio.svg)
 
-## Game
+## Game / Game
 
-***\*\*\* INCOMPLETE \*\*\****
-
-![Wireframe: Game](./images/wireframes/game.drawio.svg)
+![Wireframe: Game / Game](./images/wireframes/game-game.drawio.svg)
