@@ -10,7 +10,8 @@ to join them on a shared virtual tabletop that updates in realtime.
 
 * NF1: Players will be able to use the system from their browser on desktop, tablet, and mobile.
 
-* NF2: The user interface will be quick, snappy, and responsive, even when the connection to the server is limited.
+* NF2: The user interface will be quick, snappy, and responsive, even when the connection to the
+  server is limited.
 
 ## Functional
 
