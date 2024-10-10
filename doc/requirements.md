@@ -37,11 +37,14 @@ Players are the people that play the games together.
 
 ### Games
 
-A game is a specific virtual tabletop that a group of players are playing on together.
+A game is a specific virtual tabletop that a group of players are playing on together.  Essentially,
+in this phase of development, it is a collection of scenes that can be switched between to view.
+For example, you could have multiple players of a dungeon the players are exploring in different
+scenes, a world map in another scenes, and some hand-outs the players have been given in another.
 
 * GAF1: Players can create games, which have a name and optionally a description.
 
-* GAF2: For a specific game, players can be assigned the role of "Game Master" (GM) which can grant
+* GAF2: For a specific game, players can be assigned the role of "Game Master" (GM) which will grant
   them additional priviledges.
 
 * GAF3: The player that created the game will be its "owner" and by default assigned to the role of
