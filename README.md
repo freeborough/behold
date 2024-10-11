@@ -11,6 +11,7 @@ online.
 ## Documentation
 
 * [Requirements](./doc/requirements.md)
+* [Use Cases](./doc/use-cases.md)
 * [Architecture](./doc/architecture.md)
 * [Entities](./doc/entities.md)
 * [Wireframes](./doc/wireframes.md)
