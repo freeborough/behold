@@ -19,6 +19,10 @@ BEHOLD VTT: WIREFRAMES
 
 ## Game
 
+### Game Layout
+
+![Wireframe: Game Layout](./images/wireframes/game-layout.drawio.svg)
+
 ### Game Tab
 
 ![Wireframe: Game / Game Tab](./images/wireframes/game-game.drawio.svg)
