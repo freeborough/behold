@@ -16,3 +16,8 @@ export const PieceSchema = z.object({
 export const PieceIdSchema = PieceSchema.pick({ id: true })
 export const PieceCreateSchema = PieceSchema.partial({ id: true })
 export const PieceUpdateSchema = PieceSchema.partial()
+
+export type Piece = z.infer<typeof PieceSchema>
+export type PieceId = z.infer<typeof PieceIdSchema>
+export type PieceCreate = z.infer<typeof PieceCreateSchema>
+export type PieceUpdate = z.infer<typeof PieceUpdateSchema>
