@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/freeborough/behold/issues"
   },
-  "homepage": "https://github.com/freeborough/behold#readme"
+  "homepage": "https://github.com/freeborough/behold#readme",
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
 }
