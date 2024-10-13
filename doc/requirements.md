@@ -20,6 +20,13 @@ capacity that provides a solid foundation in which to build out the rest of the 
 * NF2: The user interface will be quick, snappy, and responsive, even when the connection to the
   server is limited.
 
+* NF3: I hope to be able to build a community around this project, therefore technologies should be
+  chosen that are widely used and/or intuative to use.
+
+* NF4: I will be creating a series of tutorials on how to build this system, therefore the design
+  and implementation should facilitate making that as streamlined and as simple a process as
+  possible.
+
 ## Functional
 
 ### Players
