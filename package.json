@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "Open source Virtual Tabletop service to let players connect with each other to play tabletop games online.",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/freeborough/behold.git"
@@ -20,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/freeborough/behold/issues"
   },
-  "homepage": "https://github.com/freeborough/behold#readme"
+  "homepage": "https://github.com/freeborough/behold#readme",
+  "workspaces": [
+    "packages/common"
+  ]
 }
