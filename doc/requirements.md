@@ -39,8 +39,8 @@ Players are the people that play the games together.
 * PLF2: If a player has forgotten their password, they can request for it to be reset and sent an
   email.
 
-* PLF3: A player can have a display name, which is the name that's displayed to other users by
-  default rather than their email address which will always remain private.
+* PLF3: A player will have a display name, which is the name that's displayed to other users by
+  rather than their email address which will always remain private.
 
 ### Games
 
