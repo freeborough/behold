@@ -15,5 +15,6 @@ export const GamePlayerUpdateSchema = GamePlayerSchema.partial()
 
 export type GamePlayerRole = z.infer<typeof GamePlayerRoleSchema>
 export type GamePlayer = z.infer<typeof GamePlayerSchema>
+export type GamePlayerId = z.infer<typeof GamePlayerIdSchema>
 export type GamePlayerCreate = z.infer<typeof GamePlayerCreateSchema>
 export type GamePlayerUPdate = z.infer<typeof GamePlayerUpdateSchema>
