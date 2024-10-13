@@ -2,7 +2,8 @@
   "name": "common",
   "version": "0.1.0",
   "description": "All behold code that is common to and safe to include in both the front-end and back-end.  So types, schemas, interfaces, utility functions, and so on.",
-  "main": "index.js",
+  "type": "module",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
