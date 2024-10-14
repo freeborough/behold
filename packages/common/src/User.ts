@@ -3,6 +3,7 @@ import { z } from "zod"
 export const UserSchema = z.object({
     id: z.string().uuid(),
     name: z.string().max(255),
+    username: z.string().max(255),
     password: z.string().max(255),
     salt: z.string()
 })
