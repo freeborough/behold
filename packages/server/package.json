@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/freeborough/behold#readme",
   "dependencies": {
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
     "tsx": "^4.19.1",
     "typescript": "^5.6.3"
   }
