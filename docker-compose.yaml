@@ -1,0 +1,15 @@
+networks:
+  behold:
+    external: false
+    name: behold
+
+services:
+  database:
+    container_name: behold-database
+    restart: no
+    image: postgres:16
+    networks:
+      - behold
+    ports:
+      - 5432:5432
+    env_file: ".env.database"
