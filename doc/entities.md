@@ -10,8 +10,7 @@ BEHOLD VTT: ENTITIES
 | id          | uuid   | pk     | 
 | username    | text   | unique | Users login with their email address.
 | name        | text   |        | The name that will be shown to all other players in the system.
-| salt        | text   |        | Generated salt used to hash the password.
-| password    | text   |        | Password hashed using the salt and original plain text password.
+| password    | text   |        | Password and salt, hashed using the salt and original plain text password.
 
 ## Game
 

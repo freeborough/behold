@@ -1,18 +1,25 @@
 import { z } from "zod"
 
-export const UserSchema = z.object({
+export const UserRecordSchema = z.object({
     id: z.string().uuid(),
     name: z.string().max(255),
     username: z.string().max(255),
-    password: z.string().max(255),
-    salt: z.string()
+    password: z.string().max(18)
 })
 
-export const UserIdSchema = UserSchema.pick({ id: true })
-export const UserCreateSchema = UserSchema.partial({ id: true })
-export const UserUpdateSchema = UserSchema.partial()
+export const UserIdSchema = UserRecordSchema.pick({ id: true })
+export const UserCreateSchema = UserRecordSchema.partial({ id: true })
+export const UserUpdateSchema = UserRecordSchema.partial()
+export const UserRegisterSchema = UserRecordSchema.omit({ id: true })
+export const UserLoginSchema = UserRecordSchema.pick({ username: true, password: true })
+export const UserSchema = UserRecordSchema.omit({ password: true })
+export const UserPublicSchema = UserRecordSchema.pick({ id: true, name: true })
 
-export type User = z.infer<typeof UserSchema>
+export type UserRecord = z.infer<typeof UserRecordSchema>
 export type UserId = z.infer<typeof UserIdSchema>
 export type UserCreate = z.infer<typeof UserCreateSchema>
 export type UserUpdate = z.infer<typeof UserUpdateSchema>
+export type UserRegister = z.infer<typeof UserRegisterSchema>
+export type UserLogin = z.infer<typeof UserLoginSchema>
+export type User = z.infer<typeof UserSchema>
+export type UserPublic = z.infer<typeof UserPublicSchema>
