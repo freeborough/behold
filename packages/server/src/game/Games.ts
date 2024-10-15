@@ -8,18 +8,6 @@ import { GameNotFoundError } from "./errors"
  * that join other tables related to the games table.
  */
 export class Games {
-    static async findById(id: GameId): Promise<Game> {
-        const result = await sql<Game[]>`
-            SELECT * FROM games
-            WHERE id = ${id}`
-        
-        if (result.length === 1) {
-            return result[0]
-        } else {
-            throw new GameNotFoundError(`Game not found: ${id}`)
-        }
-    }
-
     static async create(newGame: GameCreate): Promise<Game> {
         const result = await sql<Game[]>`
             INSERT INTO games
