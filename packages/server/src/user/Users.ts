@@ -55,7 +55,7 @@ export class Users {
             // that around in the system.
             const result = await sql`
                 INSERT INTO users
-                ${sql(userToInsert, ["name", "username", "password"])}
+                ${sql(userToInsert)}
                 RETURNING id, name, username`
 
             // To ensure type safety we have to check that result.length is 1, so we throw an
