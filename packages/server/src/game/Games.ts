@@ -1,6 +1,7 @@
 import postgres from "postgres"
 import sql from "../sql"
 import { Game, GameCreate, GameUpdate, GameId } from "common"
+import { GameNotFoundError } from "./errors"
 
 /**
  * Users API for interacting with the games table in the database, as well as additional queries
@@ -15,7 +16,7 @@ export class Games {
         if (result.length === 1) {
             return result[0]
         } else {
-            throw new Error(`Game not found: ${id}`)
+            throw new GameNotFoundError(`Game not found: ${id}`)
         }
     }
 
@@ -34,7 +35,11 @@ export class Games {
             WHERE id = ${id}
             RETURNING *`
         
-        return result[0]
+        if (result.length === 1) {
+            return result[0]
+        } else {
+            throw new GameNotFoundError(`Game not found: ${id}`)
+        }
     }
 
     static async remove(id: GameId): Promise<Game> {
@@ -43,6 +48,10 @@ export class Games {
             WHERE id = ${id}
             RETURNING *`
         
-        return result[0]
+        if (result.length === 1) {
+            return result[0]
+        } else {
+            throw new GameNotFoundError(`Game not found: ${id}`)
+        }
     }
 }
