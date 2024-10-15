@@ -1,12 +1,13 @@
 import { z } from "zod"
 
+export const LayerIdSchema = z.string().uuid()
+
 export const LayerSchema = z.object({
-    id: z.string().uuid(),
+    id: LayerIdSchema,
     scene_id: z.string().uuid(),
     name: z.string().max(255),
 })
 
-export const LayerIdSchema = LayerSchema.pick({ id: true })
 export const LayerCreateSchema = LayerSchema.partial({ id: true })
 export const LayerUpdateSchema = LayerSchema.partial()
 

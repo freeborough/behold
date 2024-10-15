@@ -1,13 +1,14 @@
 import { z } from "zod"
 
+export const UserIdSchema = z.string().uuid()
+
 export const UserRecordSchema = z.object({
-    id: z.string().uuid(),
+    id: UserIdSchema,
     name: z.string().max(255),
     username: z.string().max(255),
     password: z.string().max(18)
 })
 
-export const UserIdSchema = UserRecordSchema.pick({ id: true })
 export const UserCreateSchema = UserRecordSchema.partial({ id: true })
 export const UserUpdateSchema = UserRecordSchema.partial()
 export const UserRegisterSchema = UserRecordSchema.omit({ id: true })

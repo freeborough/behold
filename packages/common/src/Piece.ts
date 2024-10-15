@@ -1,7 +1,9 @@
 import { z } from "zod"
 
+export const PieceIdSchema = z.string().uuid()
+
 export const PieceSchema = z.object({
-    id: z.string().uuid(),
+    id: PieceIdSchema,
     owner_id: z.string().uuid(),
     layer_id: z.string().uuid(),
     asset_id: z.string().uuid(),
@@ -13,7 +15,6 @@ export const PieceSchema = z.object({
     visible: z.boolean(),
 })
 
-export const PieceIdSchema = PieceSchema.pick({ id: true })
 export const PieceCreateSchema = PieceSchema.partial({ id: true })
 export const PieceUpdateSchema = PieceSchema.partial()
 

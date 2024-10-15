@@ -1,14 +1,15 @@
 import { z } from "zod"
 
+export const GameIdSchema = z.string().uuid()
+
 export const GameSchema = z.object({
-    id: z.string().uuid(),
+    id: GameIdSchema,
     name: z.string().max(255),
     description: z.string().max(1000).optional(),
     owner_id: z.string().uuid(),
     slug: z.string().max(255),
 })
 
-export const GameIdSchema = GameSchema.pick({ id: true })
 export const GameCreateSchema = GameSchema.partial({ id: true })
 export const GameUpdateSchema = GameSchema.partial()
 

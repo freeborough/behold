@@ -1,13 +1,14 @@
 import { z } from "zod"
 
+export const SceneIdSchema = z.string().uuid()
+
 export const SceneSchema = z.object({
-    id: z.string().uuid(),
+    id: SceneIdSchema,
     game_id: z.string().uuid(),
     name: z.string().max(255),
     visible: z.boolean(),
 })
 
-export const SceneIdSchema = SceneSchema.pick({ id: true })
 export const SceneCreateSchema = SceneSchema.partial({ id: true })
 export const SceneUpdateSchema = SceneSchema.partial()
 
