@@ -1,7 +1,7 @@
 import postgres from "postgres"
 import sql from "../sql"
 import { Game, GameCreate, GameUpdate, GameId } from "common"
-import { GameNotFoundError } from "./errors"
+import { GameCreateError, GameNotFoundError } from "./errors"
 
 /**
  * Users API for interacting with the games table in the database, as well as additional queries
@@ -14,7 +14,11 @@ export class Games {
             ${sql(newGame)}
             RETURNING *`
         
-        return result[0]
+        if (result.length === 1) {
+            return result[0]
+        } else {
+            throw new GameCreateError(`Could not create game.`)
+        }
     }
 
     static async update(id: GameId, data: GameUpdate): Promise<Game> {
