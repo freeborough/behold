@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs"
 import postgres from "postgres"
 import sql from "../sql"
 import { User, UserId, UserCreate, UserUpdate, UserRegister, UserLogin, UserRecord } from "common"
-import { UserAuthenticationError, UserRegistrationError, UsernameExistsError } from "./errors"
+import { UserAuthenticationError, UserRegistrationError, UsernameExistsError } from "./UserErrors"
 
 const SALT_LENGTH = 10
 

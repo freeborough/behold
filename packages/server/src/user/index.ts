@@ -1,2 +1,2 @@
-export * from "./errors"
+export * from "./UserErrors"
 export * from "./Users"

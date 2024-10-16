@@ -1,7 +1,7 @@
 import postgres from "postgres"
 import sql from "../sql"
 import { Game, GameCreate, GameUpdate, GameId } from "common"
-import { GameCreateError, GameNotFoundError } from "./errors"
+import { GameCreateError, GameNotFoundError } from "./GameErrors"
 
 /**
  * Users API for interacting with the games table in the database, as well as additional queries
