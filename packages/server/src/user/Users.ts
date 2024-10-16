@@ -31,15 +31,11 @@ export class Users {
      * database, for example if it could not connect.
      *
      * @example
-     * try {
-     *   const user = await Users.register({
-     *     name: "Bilbo Baggins",
-     *     username: "bilbo@baggins.com",
-     *     password: "Prec!ous"
-     *   })
-     * } catch(e) {
-     *   // Handle errors
-     * }
+     * const user = await Users.register({
+     *   name: "Bilbo Baggins",
+     *   username: "bilbo@baggins.com",
+     *   password: "Prec!ous"
+     * })
      */
     static async register(newUser: UserRegister) : Promise<User> {
         const passwordHash = await bcrypt.hash(newUser.password, SALT_LENGTH)
@@ -89,14 +85,10 @@ export class Users {
      * @throws PostgresError if there was an underlying error with the database.
      *
      * @example
-     * try {
-     *   const user = await Users.login({
-     *     username: "bilbo@baggins.com",
-     *     password: "Prec!ous"
-     *   })
-     * } catch(e) {
-     *   // Handle errors
-     * }
+     * const user = await Users.login({
+     *   username: "bilbo@baggins.com",
+     *   password: "Prec!ous"
+     * })
      */
     static async authenticate(login: UserLogin): Promise<User> {
         const result = await sql<UserRecord[]>`
