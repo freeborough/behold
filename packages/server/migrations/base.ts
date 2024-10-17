@@ -1,4 +1,3 @@
-import "dotenv/config"
 import sql from "../src/sql"
 
 export async function up() {

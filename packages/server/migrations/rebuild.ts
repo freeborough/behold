@@ -1,3 +1,4 @@
+import "dotenv/config"
 import { up, down } from "./base"
 
 export async function main() {
