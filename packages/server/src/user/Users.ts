@@ -54,17 +54,12 @@ export class Users {
                 ${sql(userToInsert)}
                 RETURNING id, name, username`
 
-            // To ensure type safety we have to check that result.length is 1, so we throw an
-            // error when that's not the case, but it seems that it will be difficult to get this
-            // condition to occur without throwing a PostgresError.
             if (result.length === 1) {
                 return result[0] as User
             } else {
                 throw new UserRegistrationError(`Users.register failed.`)
             }
         } catch(e) {
-            // If the PostgresError is the unique constraint on the username field then we just
-            // re-wrap this as our own error to make it cleaner to report this back to the user.
             if (e instanceof postgres.PostgresError && e.constraint_name === "users_username_key") {
                 throw new UsernameExistsError(`Username exists: ${newUser.username}`)
             }
