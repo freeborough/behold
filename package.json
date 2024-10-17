@@ -6,7 +6,7 @@
   "scripts": {
     "migrate:rebuild": "npm run migrate:rebuild packages/server",
     "test": "npx vitest run",
-    "test:dev": "npx vitest",
+    "test:dev": "npx vitest watch",
     "test:coverage": "npx vitest run --coverage"
   },
   "repository": {
