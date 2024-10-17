@@ -24,3 +24,8 @@ export type UserRegister = z.infer<typeof UserRegisterSchema>
 export type UserLogin = z.infer<typeof UserLoginSchema>
 export type User = z.infer<typeof UserSchema>
 export type UserPublic = z.infer<typeof UserPublicSchema>
+
+export interface UserStore {
+    register(newUser: UserRegister): Promise<User>
+    authenticate(login: UserLogin): Promise<User>
+}

@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
 import postgres from "postgres"
 import sql from "../sql"
-import { User, UserId, UserCreate, UserUpdate, UserRegister, UserLogin, UserRecord } from "common"
+import { UserStore, User, UserId, UserCreate, UserUpdate, UserRegister, UserLogin, UserRecord } from "common"
 import { UserAuthenticationError, UserRegistrationError, UsernameExistsError } from "./UserErrors"
 
 const SALT_LENGTH = 10
@@ -9,7 +9,7 @@ const SALT_LENGTH = 10
 /**
  * Users API for interacting with the users table in the database.
  */
-export class Users {
+export class UserStorePostgres implements UserStore {
 
     /**
      * Registers a new user in the system.  The passed password should be in plain text, it'll then
@@ -37,7 +37,7 @@ export class Users {
      *   password: "Prec!ous"
      * })
      */
-    static async register(newUser: UserRegister) : Promise<User> {
+    async register(newUser: UserRegister) : Promise<User> {
         const passwordHash = await bcrypt.hash(newUser.password, SALT_LENGTH)
 
         const userToInsert: UserCreate = {
@@ -85,7 +85,7 @@ export class Users {
      *   password: "Prec!ous"
      * })
      */
-    static async authenticate(login: UserLogin): Promise<User> {
+    async authenticate(login: UserLogin): Promise<User> {
         const result = await sql<UserRecord[]>`
             SELECT *
             FROM users
