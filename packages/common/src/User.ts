@@ -1,12 +1,13 @@
 import { z } from "zod"
+import { Result } from "./Result"
 
 export const UserIdSchema = z.string().uuid()
 
 export const UserRecordSchema = z.object({
     id: UserIdSchema,
     name: z.string().max(255),
-    username: z.string().max(255),
-    password: z.string().max(18)
+    username: z.string().email(),
+    password: z.string().max(18),
 })
 
 export const UserCreateSchema = UserRecordSchema.partial({ id: true })
@@ -26,6 +27,6 @@ export type User = z.infer<typeof UserSchema>
 export type UserPublic = z.infer<typeof UserPublicSchema>
 
 export interface UserStore {
-    register(newUser: UserRegister): Promise<User>
-    authenticate(login: UserLogin): Promise<User>
+    register(newUser: UserRegister): Promise<Result<User>>
+    authenticate(login: UserLogin): Promise<Result<User>>
 }

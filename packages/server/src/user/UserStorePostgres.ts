@@ -1,8 +1,13 @@
 import bcrypt from "bcryptjs"
 import postgres from "postgres"
+import { z } from "zod"
 import sql from "../sql"
-import { UserStore, User, UserId, UserCreate, UserUpdate, UserRegister, UserLogin, UserRecord } from "common"
-import { UserAuthenticationError, UserRegistrationError, UsernameExistsError } from "./UserErrors"
+import {
+    UserStore, User, UserId, UserCreate, UserUpdate, UserRegister, UserRegisterSchema, UserLogin, 
+    UserRecord, Issue, IssueKind, Result,
+    UserLoginSchema
+} from "common"
+import { errorToIssue } from "../util/results"
 
 const SALT_LENGTH = 10
 
@@ -19,16 +24,7 @@ export class UserStorePostgres implements UserStore {
      * expected that this happens in the endpoint.
      *
      * @param newUser The details of the user to register: name, username, password.
-     * @returns The created User.  Note that this excludes the password and salt fields.
-     *
-     * @throws {@link UsernameExistsError} if the insert failed the unique constraint on the
-     * username field.
-     *
-     * @throws {@link UserRegistrationError} if there were no PostgresErrors caught but no user
-     * records were returned.
-     *
-     * @throws PostgresError if there was an underlying error with the interaction with the
-     * database, for example if it could not connect.
+     * @returns The created {@link User} (which exclused the password field) or an array of Issues.
      *
      * @example
      * const user = await Users.register({
@@ -37,16 +33,18 @@ export class UserStorePostgres implements UserStore {
      *   password: "Prec!ous"
      * })
      */
-    async register(newUser: UserRegister) : Promise<User> {
-        const passwordHash = await bcrypt.hash(newUser.password, SALT_LENGTH)
-
-        const userToInsert: UserCreate = {
-            name: newUser.name,
-            username: newUser.username,
-            password: passwordHash,
-        }
+    async register(newUser: UserRegister) : Promise<Result<User>> {
+        const issues: Issue[] = []
 
         try {
+            const parsed = UserRegisterSchema.parse(newUser)
+            const passwordHash = await bcrypt.hash(parsed.password, SALT_LENGTH)
+            const userToInsert: UserCreate = {
+                name: parsed.name,
+                username: parsed.username,
+                password: passwordHash,
+            }    
+
             // Note that we're not returning the password, we obviously don't want to be passing
             // that around in the system.
             const result = await sql`
@@ -54,18 +52,12 @@ export class UserStorePostgres implements UserStore {
                 ${sql(userToInsert)}
                 RETURNING id, name, username`
 
-            if (result.length === 1) {
-                return result[0] as User
-            } else {
-                throw new UserRegistrationError(`Users.register failed.`)
-            }
+            return { ok: true, value: result[0] as User }
         } catch(e) {
-            if (e instanceof postgres.PostgresError && e.constraint_name === "users_username_key") {
-                throw new UsernameExistsError(`Username exists: ${newUser.username}`)
-            }
-
-            throw e
+            issues.push(...errorToIssue(e as Error))
         }
+
+        return { ok: false, issues }
     }
 
     /**
@@ -74,33 +66,40 @@ export class UserStorePostgres implements UserStore {
      * @param login The login details to use: username and password (plain text).
      * @returns The User record if successfully authenticated, otherwise a UserAuthenticationError.
      *
-     * @throws {@link UserAuthenticationError} if the user was not successfully authenticated.  No
-     * reason is supplied.
-     *
-     * @throws PostgresError if there was an underlying error with the database.
-     *
      * @example
      * const user = await Users.login({
      *   username: "bilbo@baggins.com",
      *   password: "Prec!ous"
      * })
      */
-    async authenticate(login: UserLogin): Promise<User> {
-        const result = await sql<UserRecord[]>`
-            SELECT *
-            FROM users
-            WHERE username = ${login.username}`
-        
-        if (result.length === 1) {
-            const userRecord = result[0]
-            const authenticated = await bcrypt.compare(login.password, userRecord.password)
+    async authenticate(login: UserLogin): Promise<Result<User>> {
+        const issues: Issue[] = []
 
-            if (authenticated) {
-                // We explicitly don't want to pass the password hash around in the system.
-                return { id: userRecord.id, username: userRecord.username, name: userRecord.name }
+        try {
+            const parsed = UserLoginSchema.parse(login)
+            const result = await sql<UserRecord[]>`
+                SELECT *
+                FROM users
+                WHERE username = ${parsed.username}`
+        
+            if (result.length === 1) {
+                const userRecord = result[0]
+                const authenticated = await bcrypt.compare(parsed.password, userRecord.password)
+
+                if (authenticated) {
+                    // We explicitly don't want to pass the password hash around in the system.
+                    return { ok: true, value: {
+                        id: userRecord.id,
+                        username: userRecord.username,
+                        name: userRecord.name } }
+                }
             }
+
+            issues.push(new Issue("Failed to authenticate.", IssueKind.CONSTRAINT, parsed.username))
+        } catch(e) {
+            issues.push(...errorToIssue(e as Error))
         }
 
-        throw new UserAuthenticationError(`Failed to authenticate user: ${login.username}`)
+        return { ok: false, issues }
     }
 }

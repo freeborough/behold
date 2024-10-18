@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express"
-import { UserStore, UserRegisterSchema } from "common"
+import { UserStore, UserRegisterSchema, IssueKind } from "common"
+import type { User } from "common"
 import { UserStorePostgres } from "./UserStorePostgres"
+import { sendResult } from "../util/results"
 
 /**
  * Creates and returns an express router that manages a REST API that wraps a UserStore.
@@ -16,24 +18,16 @@ import { UserStorePostgres } from "./UserStorePostgres"
 export function userRouter(userStore: UserStore = new UserStorePostgres()): express.Router {
     const router = express.Router()
 
-    // Try and register a new user in the system.
-    router.post("/register", async (request, response) => {
-        const safe = UserRegisterSchema.safeParse(request.body)
+    // TODO: Create a user session if they successfully register / authenticate.
 
-        if (safe.success) {
-            try {
-                const user = await userStore.register(safe.data)
-                response.json(user)
-            } catch(e) {
-                // TODO: Handle underlying problems.
-                console.error(e)
-                response.status(500).send({
-                    message: "Internal server error."
-                })
-            }
-        } else {
-            // TODO: Handle validation problems.
-        }
+    // Register a new user in the system.
+    router.post("/register", async (request, response) => {
+        sendResult(response, await userStore.register(request.body))
+    })
+
+    // Authenticate a user's credentials against the system.
+    router.post("/authenticate", async (request, response) => {
+        sendResult(response, await userStore.authenticate(request.body))
     })
 
     return router
