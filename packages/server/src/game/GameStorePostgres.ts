@@ -8,7 +8,7 @@ import { errorToIssue } from "../util/results"
  * Users API for interacting with the games table in the database, as well as additional queries
  * that join other tables related to the games table.
  */
-export class Games implements GameStore {
+export class GameStorePostgres implements GameStore {
     /**
      * Creates a new game record in the database.
      *
