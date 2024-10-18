@@ -1,2 +1,1 @@
-export * from "./GameErrors"
-export * from "./Games"
+export * from "./GameStore"
