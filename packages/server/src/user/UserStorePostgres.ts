@@ -4,8 +4,7 @@ import { z } from "zod"
 import sql from "../sql"
 import {
     UserStore, User, UserId, UserCreate, UserUpdate, UserRegister, UserRegisterSchema, UserLogin, 
-    UserRecord, Issue, IssueKind, Result,
-    UserLoginSchema
+    UserRecord, Issue, IssueKind, Result, ok, issue, UserLoginSchema
 } from "common"
 import { errorToIssue } from "../util/results"
 
@@ -34,8 +33,6 @@ export class UserStorePostgres implements UserStore {
      * })
      */
     async register(newUser: UserRegister) : Promise<Result<User>> {
-        const issues: Issue[] = []
-
         try {
             const parsed = UserRegisterSchema.parse(newUser)
             const passwordHash = await bcrypt.hash(parsed.password, SALT_LENGTH)
@@ -52,12 +49,10 @@ export class UserStorePostgres implements UserStore {
                 ${sql(userToInsert)}
                 RETURNING id, name, username`
 
-            return { ok: true, value: result[0] as User }
+            return ok(result[0] as User)
         } catch(e) {
-            issues.push(...errorToIssue(e as Error))
+            return issue(errorToIssue(e as Error))
         }
-
-        return { ok: false, issues }
     }
 
     /**
@@ -73,8 +68,6 @@ export class UserStorePostgres implements UserStore {
      * })
      */
     async authenticate(login: UserLogin): Promise<Result<User>> {
-        const issues: Issue[] = []
-
         try {
             const parsed = UserLoginSchema.parse(login)
             const result = await sql<UserRecord[]>`
@@ -88,18 +81,16 @@ export class UserStorePostgres implements UserStore {
 
                 if (authenticated) {
                     // We explicitly don't want to pass the password hash around in the system.
-                    return { ok: true, value: {
+                    return ok({
                         id: userRecord.id,
                         username: userRecord.username,
-                        name: userRecord.name } }
+                        name: userRecord.name })
                 }
             }
 
-            issues.push(new Issue("Failed to authenticate.", IssueKind.CONSTRAINT, parsed.username))
+            return issue(new Issue("Failed to authenticate.", IssueKind.CONSTRAINT, parsed.username))
         } catch(e) {
-            issues.push(...errorToIssue(e as Error))
+            return issue(errorToIssue(e as Error))
         }
-
-        return { ok: false, issues }
     }
 }

@@ -1,6 +1,6 @@
 import postgres from "postgres"
 import sql from "../sql"
-import { Game, GameCreate, GameUpdate, GameId, GameStore, Result, GameCreateSchema, GameIdSchema, GameUpdateSchema, Issue, IssueKind } from "common"
+import { Game, GameCreate, GameUpdate, GameId, GameStore, Result, ok, issue, GameCreateSchema, GameIdSchema, GameUpdateSchema, Issue, IssueKind } from "common"
 import { errorToIssue } from "../util/results"
 
 
@@ -31,9 +31,9 @@ export class Games implements GameStore {
                 ${sql(parsed)}
                 RETURNING *`
             
-            return { ok: true, value: result[0] }
+            return ok(result[0])
         } catch(e) {
-            return { ok: false, issues: errorToIssue(e as Error) }
+            return issue(errorToIssue(e as Error))
         }
     }
 
@@ -59,12 +59,12 @@ export class Games implements GameStore {
                 RETURNING *`
             
             if (result.length === 1) {
-                return { ok: true, value: result[0] }
+                return ok(result[0])
             } else {
-                return { ok: false, issues: [new Issue("Game not found.", IssueKind.CONSTRAINT, "id")]}
+                return issue(new Issue("Game not found.", IssueKind.CONSTRAINT, "id"))
             }
         } catch(e) {
-            return { ok: false, issues: errorToIssue(e as Error) }
+            return issue(errorToIssue(e as Error))
         }
     }
 
@@ -74,9 +74,6 @@ export class Games implements GameStore {
      *
      * @param id    The unique identifier of the game to remove.
      * @returns     The game record that was removed.
-     *
-     * @throws PostgresError if there was an underlying error with the interaction with the
-     * database, for example if it could not connect.
      *
      * @example
      * const oldGame = await Games.delete("38a47d67-459b-4ceb-9895-518db1f8bdf8")
@@ -91,12 +88,12 @@ export class Games implements GameStore {
             RETURNING *`
         
             if (result.length === 1) {
-                return { ok: true, value: result[0] }
+                return ok(result[0])
             } else {
-                return { ok: false, issues: [new Issue("Game not found.", IssueKind.CONSTRAINT, "id")] }
+                return issue(new Issue("Game not found.", IssueKind.CONSTRAINT, "id"))
             }
         } catch(e) {
-            return { ok: false, issues: errorToIssue(e as Error) }
+            return issue(errorToIssue(e as Error))
         }
     }
 }
