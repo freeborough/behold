@@ -4,7 +4,7 @@
   "description": "Open source Virtual Tabletop service to let players connect with each other to play tabletop games online.",
   "main": "index.js",
   "scripts": {
-    "migrate:rebuild": "npm run migrate:rebuild packages/server",
+    "migrate:rebuild": "npm run migrate:rebuild --workspace=server",
     "test": "npx vitest run",
     "test:dev": "npx vitest watch",
     "test:coverage": "npx vitest run --coverage"
