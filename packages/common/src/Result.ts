@@ -17,7 +17,7 @@ import { Issue } from "./Issue";
  *   if (user !== undefined) {
  *     return { ok: true, value: user }
  *   } else {
- *     return { ok: false, issues: [ new Issue("User not found.", "CONSTRAINT", "id") ]}
+ *     return { ok: false, issues: [ new Issue("User not found.", IssueKind.CONSTRAINT, "id") ]}
  *   }
  * }
  */
