@@ -100,6 +100,7 @@ export async function down() {
     try {
         process.stdout.write("Down... ")
 
+        await sql`SET client_min_messages=WARNING`
         await sql`DROP INDEX IF EXISTS pieces_layer_id_idx`
         await sql`DROP TABLE IF EXISTS pieces`
         await sql`DROP INDEX IF EXISTS assets_tags_idx`
