@@ -151,4 +151,27 @@ describe("UserRouter", () => {
             expect(r.body[0].kind).toBe("INTERNAL")
         })
     })
+
+    describe("logout", async () => {
+        const url = "/api/user/logout"
+
+        const valid = { name: "Bilbo Baggins", username: "bilbo@baggins.com", password: "Prec1ous!" }
+
+        it("does not authorize logging out if you don't have an active session.", async () => {
+            const r = await post(url, {})
+
+            expect(r.statusCode).toBe(403)
+        })
+
+        it("can be called when you have an active session then subsequently you are no longer authorized to logout.", async () => {
+            const agent = request.agent(app)
+            await agent.post("/api/user/register").send(valid)
+
+            const r = await agent.post(url).send()
+            expect(r.statusCode).toBe(204)
+
+            const authResponse = await agent.post(url).send()
+            expect(authResponse.statusCode).toBe(403)
+        })
+    })
 })

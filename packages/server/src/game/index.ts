@@ -1,1 +1,1 @@
-export * from "./GameStore"
+export * from "./GameStorePostgres"
