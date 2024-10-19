@@ -54,7 +54,8 @@ export class GameStorePostgres implements GameStore {
             const parsedId = GameIdSchema.parse(id)
             const parsedData = GameUpdateSchema.parse(data)
             const result = await sql<Game[]>`
-                UPDATE games SET ${sql(parsedData)}
+                UPDATE games
+                SET ${sql(parsedData)}
                 WHERE id = ${parsedId}
                 RETURNING *`
             
@@ -83,9 +84,9 @@ export class GameStorePostgres implements GameStore {
         try {
             const parsedId = GameIdSchema.parse(id)
             const result = await sql<Game[]>`
-            DELETE FROM games
-            WHERE id = ${id}
-            RETURNING *`
+                DELETE FROM games
+                WHERE id = ${id}
+                RETURNING *`
         
             if (result.length === 1) {
                 return ok(result[0])
