@@ -1,6 +1,7 @@
 import { Response } from "express"
 import postgres from "postgres"
 import { z } from "zod"
+import { StatusCodes } from "http-status-codes"
 import { Issue, IssueKind, Result, zodToIssue } from "common"
 
 /**
@@ -15,9 +16,9 @@ import { Issue, IssueKind, Result, zodToIssue } from "common"
  */
 export function sendResult(response: Response, result: Result<any>) {
     if (result.ok) {
-        response.status(200).json(result.value)
+        response.status(StatusCodes.OK).json(result.value)
     } else {
-        const status = result.issues.some(i => i.kind === IssueKind.INTERNAL) ? 500 : 400
+        const status = result.issues.some(i => i.kind === IssueKind.INTERNAL) ? StatusCodes.INTERNAL_SERVER_ERROR : StatusCodes.BAD_REQUEST
         response.status(status).json(result.issues)
     }
 }

@@ -4,6 +4,7 @@ import type { User } from "common"
 import { UserStorePostgres } from "./UserStorePostgres"
 import { sendResult } from "../util/results"
 import { authenticated } from "../middleware/authenticated"
+import { StatusCodes } from "http-status-codes"
 
 /**
  * Creates and returns an express router that manages a REST API that wraps a UserStore.
@@ -42,7 +43,7 @@ export function userRouter(userStore: UserStore = new UserStorePostgres()): expr
     // Log the user out.
     router.post("/logout", authenticated, async (request, response) => {
         delete request.session.user
-        response.status(204).send()
+        response.status(StatusCodes.NO_CONTENT).send()
     })
 
     return router
