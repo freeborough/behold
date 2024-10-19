@@ -30,7 +30,11 @@
     "packages/server"
   ],
   "devDependencies": {
+    "@types/express-session": "^1.18.0",
     "@vitest/coverage-v8": "^2.1.3",
     "vitest": "^2.1.3"
+  },
+  "dependencies": {
+    "express-session": "^1.18.1"
   }
 }

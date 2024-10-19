@@ -18,16 +18,24 @@ import { sendResult } from "../util/results"
 export function userRouter(userStore: UserStore = new UserStorePostgres()): express.Router {
     const router = express.Router()
 
-    // TODO: Create a user session if they successfully register / authenticate.
-
     // Register a new user in the system.
     router.post("/register", async (request, response) => {
-        sendResult(response, await userStore.register(request.body))
+        const result = await userStore.register(request.body)
+        if (result.ok) {
+            request.session.user = result.value
+        }
+
+        sendResult(response, result)
     })
 
     // Authenticate a user's credentials against the system.
     router.post("/authenticate", async (request, response) => {
-        sendResult(response, await userStore.authenticate(request.body))
+        const result = await userStore.authenticate(request.body)
+        if (result.ok) {
+            request.session.user = result.value
+        }
+
+        sendResult(response, result)
     })
 
     return router

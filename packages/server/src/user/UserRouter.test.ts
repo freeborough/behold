@@ -1,13 +1,13 @@
 import "dotenv/config"
 import { describe, it, beforeEach, expect, vi } from "vitest"
-import supertest from "supertest"
+import request from "supertest"
 
 import { app } from "../app"
 import * as migrate from "../../migrations/base"
 import { sql } from "../sql"
 
-async function post(url: string, data: any): Promise<supertest.Response> {
-    return await supertest(app)
+async function post(url: string, data: any): Promise<request.Response> {
+    return await request(app)
         .post(url)
         .send(data)
 }
@@ -38,6 +38,14 @@ describe("UserRouter", () => {
             expect(r.body.username).toBe(valid.username)
             expect(r.body.password).toBeUndefined()
             expect(r.body.id).toMatch(new RegExp(/^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/))
+        })
+
+        it("sets a session cookie when valid details are posted.", async () => {
+            const agent = request.agent(app)
+            const r = await agent.post(url).send(valid)
+
+            expect(r.headers["set-cookie"]).toBeDefined()
+            expect(r.headers["set-cookie"][0]).toMatch(/^session=.*; Path=\/; HttpOnly$/)
         })
 
         it("returns a validation issue if the username (email) was malformed.", async () => {
