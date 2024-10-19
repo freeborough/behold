@@ -81,7 +81,7 @@ describe("UserRouter", () => {
             expect(r.body[0].references).toBe("username")
         })
 
-        it("includes salt in the password hash so two identical passwords will have different hashes", async () => {
+        it("includes salt in the password hash so two identical passwords will have different hashes.", async () => {
             await post(url, valid)
             await post(url, validSamePassword)
 
