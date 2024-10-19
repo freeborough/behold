@@ -3,17 +3,22 @@ import postgres from "postgres"
 import { z } from "zod"
 import sql from "../sql"
 import {
-    UserStore, User, UserId, UserCreate, UserUpdate, UserRegister, UserRegisterSchema, UserLogin, 
+    User, UserId, UserCreate, UserUpdate, UserRegister, UserRegisterSchema, UserLogin, 
     UserRecord, Issue, IssueKind, Result, ok, issue, UserLoginSchema
 } from "common"
 import { errorToIssue } from "../util/results"
 
 const SALT_LENGTH = 10
 
+export interface ServerUserStore {
+    register(newUser: UserRegister): Promise<Result<User>>
+    authenticate(login: UserLogin): Promise<Result<User>>
+}
+
 /**
  * Users API for interacting with the users table in the database.
  */
-export class UserStorePostgres implements UserStore {
+export class UserStorePostgres implements ServerUserStore {
 
     /**
      * Registers a new user in the system.  The passed password should be in plain text, it'll then

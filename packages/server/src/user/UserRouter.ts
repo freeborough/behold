@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express"
-import { UserStore, UserRegisterSchema, IssueKind } from "common"
+import { UserRegisterSchema, IssueKind } from "common"
 import type { User } from "common"
-import { UserStorePostgres } from "./UserStorePostgres"
+import { ServerUserStore, UserStorePostgres } from "./UserStorePostgres"
 import { sendResult } from "../util/results"
 import { authenticated } from "../middleware/authenticated"
 import { StatusCodes } from "http-status-codes"
@@ -17,7 +17,7 @@ import { StatusCodes } from "http-status-codes"
  * @example
  * app.use("/api/user", userRouter())
  */
-export function userRouter(userStore: UserStore = new UserStorePostgres()): express.Router {
+export function userRouter(userStore: ServerUserStore = new UserStorePostgres()): express.Router {
     const router = express.Router()
 
     // Register a new user in the system.
