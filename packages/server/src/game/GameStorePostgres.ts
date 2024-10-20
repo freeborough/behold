@@ -1,10 +1,11 @@
 import postgres from "postgres"
 import sql from "../sql"
-import { Game, GameCreate, GameUpdate, GameId, Result, ok, issue, GameCreateSchema, GameIdSchema, GameUpdateSchema, Issue, IssueKind } from "common"
+import { Game, GameCreate, GameUpdate, GameId, Result, ok, issue, GameCreateSchema, GameIdSchema, GameUpdateSchema, Issue, IssueKind, UserId, UserIdSchema } from "common"
 import { errorToIssue } from "../util/results"
 
-export interface GameStoreServer {
+export interface ServerGameStore {
     create(newGame: GameCreate): Promise<Result<Game>>
+    findByUserId(userId: UserId): Promise<Result<Game[]>>
     update(id: GameId, data: GameUpdate): Promise<Result<Game>>
     remove(id: GameId): Promise<Result<Game>>
 }
@@ -13,7 +14,7 @@ export interface GameStoreServer {
  * Users API for interacting with the games table in the database, as well as additional queries
  * that join other tables related to the games table.
  */
-export class GameStorePostgres implements GameStoreServer {
+export class GameStorePostgres implements ServerGameStore {
     /**
      * Creates a new game record in the database.
      *
@@ -21,7 +22,7 @@ export class GameStorePostgres implements GameStoreServer {
      * @returns The newly created game.
      * 
      * @example
-     * const game = await Games.create({
+     * const result = await Games.create({
      *   name: "The Blind Leading the Blind",
      *   slug: "the-blind-leading-the-blind",
      *   description: "In a world where magic has been forgotten... four wizards set out to save the world.",
@@ -42,6 +43,21 @@ export class GameStorePostgres implements GameStoreServer {
         }
     }
 
+    // TODO: Update this to also use the GameUsers table.
+    async findByUserId(userId: UserId): Promise<Result<Game[]>> {
+        try {
+            const parsedUserId = UserIdSchema.parse(userId)
+            const result = await sql<Game[]>`
+                SELECT *
+                FROM games
+                WHERE owner_id = ${parsedUserId}`
+            
+            return ok(result)
+        } catch(e) {
+            return issue(errorToIssue(e as Error))
+        }
+    }
+
     /**
      * Updates an existing game record in the database.
      *
@@ -50,7 +66,7 @@ export class GameStorePostgres implements GameStoreServer {
      * @returns     The full updated game record.
      * 
      * @example
-     * const game = await Games.update("38a47d67-459b-4ceb-9895-518db1f8bdf8", {
+     * const result = await Games.update("38a47d67-459b-4ceb-9895-518db1f8bdf8", {
      *   description: "In a world where magic has been forgotten... four wizards make things worse.",
      * })
      */
@@ -82,7 +98,7 @@ export class GameStorePostgres implements GameStoreServer {
      * @returns     The game record that was removed.
      *
      * @example
-     * const oldGame = await Games.delete("38a47d67-459b-4ceb-9895-518db1f8bdf8")
+     * const result = await Games.delete("38a47d67-459b-4ceb-9895-518db1f8bdf8")
      * 
      */
     async remove(id: GameId): Promise<Result<Game>> {
