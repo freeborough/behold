@@ -1,14 +1,19 @@
 import postgres from "postgres"
 import sql from "../sql"
-import { Game, GameCreate, GameUpdate, GameId, GameStore, Result, ok, issue, GameCreateSchema, GameIdSchema, GameUpdateSchema, Issue, IssueKind } from "common"
+import { Game, GameCreate, GameUpdate, GameId, Result, ok, issue, GameCreateSchema, GameIdSchema, GameUpdateSchema, Issue, IssueKind } from "common"
 import { errorToIssue } from "../util/results"
 
+export interface GameStoreServer {
+    create(newGame: GameCreate): Promise<Result<Game>>
+    update(id: GameId, data: GameUpdate): Promise<Result<Game>>
+    remove(id: GameId): Promise<Result<Game>>
+}
 
 /**
  * Users API for interacting with the games table in the database, as well as additional queries
  * that join other tables related to the games table.
  */
-export class GameStorePostgres implements GameStore {
+export class GameStorePostgres implements GameStoreServer {
     /**
      * Creates a new game record in the database.
      *

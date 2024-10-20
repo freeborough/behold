@@ -18,9 +18,3 @@ export type Game = z.infer<typeof GameSchema>
 export type GameId = z.infer<typeof GameIdSchema>
 export type GameCreate = z.infer<typeof GameCreateSchema>
 export type GameUpdate = z.infer<typeof GameUpdateSchema>
-
-export interface GameStore {
-    create(newGame: GameCreate): Promise<Result<Game>>
-    update(id: GameId, data: GameUpdate): Promise<Result<Game>>
-    remove(id: GameId): Promise<Result<Game>>
-}
