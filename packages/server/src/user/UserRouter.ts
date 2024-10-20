@@ -3,7 +3,7 @@ import { UserRegisterSchema, IssueKind } from "common"
 import type { User } from "common"
 import { ServerUserStore, UserStorePostgres } from "./UserStorePostgres"
 import { sendResult } from "../util/results"
-import { authenticated } from "../middleware/authenticated"
+import { isAuthenticated } from "../middleware/authenticated"
 import { StatusCodes } from "http-status-codes"
 
 /**
@@ -41,7 +41,7 @@ export function userRouter(userStore: ServerUserStore = new UserStorePostgres())
     })
 
     // Log the user out.
-    router.post("/logout", authenticated, async (request, response) => {
+    router.post("/logout", isAuthenticated, async (request, response) => {
         delete request.session.user
         response.status(StatusCodes.NO_CONTENT).send()
     })
