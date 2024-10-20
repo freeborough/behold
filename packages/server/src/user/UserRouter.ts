@@ -1,6 +1,4 @@
 import express, { Request, Response } from "express"
-import { UserRegisterSchema, IssueKind } from "common"
-import type { User } from "common"
 import { ServerUserStore, UserStorePostgres } from "./UserStorePostgres"
 import { sendResult } from "../util/results"
 import { isAuthenticated } from "../middleware/isAuthenticated"
