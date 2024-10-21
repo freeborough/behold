@@ -1,7 +1,7 @@
 import "dotenv/config"
 import { describe, it, beforeEach, expect, vi } from "vitest"
 import request from "supertest"
-import { StatusCodes } from "http-status-codes"
+import { StatusCodes as HttpStatus } from "http-status-codes"
 
 import { app } from "../app"
 import * as migrate from "../../migrations/base"
@@ -17,6 +17,8 @@ beforeEach(async () => {
     await migrate.down()
     await migrate.up()
 })
+
+const uuidRegex = new RegExp(/^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/)
 
 // NOTE: I am not checking the issue messages themselves, the bit that would be displayed to the
 //       user, as this will be run through a translation lookup.
@@ -34,11 +36,11 @@ describe("UserRouter", () => {
         it("returns the user's name, username, and id when valid details are posted.", async () => {
             const r = await post(url, valid)
 
-            expect(r.statusCode).toBe(StatusCodes.OK)
+            expect(r.statusCode).toBe(HttpStatus.OK)
             expect(r.body.name).toBe(valid.name)
             expect(r.body.username).toBe(valid.username)
             expect(r.body.password).toBeUndefined()
-            expect(r.body.id).toMatch(new RegExp(/^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/))
+            expect(r.body.id).toMatch(uuidRegex)
         })
 
         it("sets a session cookie when valid details are posted.", async () => {
@@ -52,7 +54,7 @@ describe("UserRouter", () => {
         it("returns a validation issue if the username (email) was malformed.", async () => {
             const r = await post(url, invalidUsername)
 
-            expect(r.statusCode).toBe(StatusCodes.BAD_REQUEST)
+            expect(r.statusCode).toBe(HttpStatus.BAD_REQUEST)
             expect(r.body[0].kind).toBe("VALIDATION")
             expect(r.body[0].references).toBe("username")
         })
@@ -60,7 +62,7 @@ describe("UserRouter", () => {
         it("returns a validation issue if a name was not given.", async () => {
             const r = await post(url, missingName)
 
-            expect(r.statusCode).toBe(StatusCodes.BAD_REQUEST)
+            expect(r.statusCode).toBe(HttpStatus.BAD_REQUEST)
             expect(r.body[0].kind).toBe("VALIDATION")
             expect(r.body[0].references).toBe("name")
         })
@@ -68,7 +70,7 @@ describe("UserRouter", () => {
         it("returns a validation issue if the username was not given.", async () => {
             const r = await post(url, missingUsername)
 
-            expect(r.statusCode).toBe(StatusCodes.BAD_REQUEST)
+            expect(r.statusCode).toBe(HttpStatus.BAD_REQUEST)
             expect(r.body[0].kind).toBe("VALIDATION")
             expect(r.body[0].references).toBe("username")
         })
@@ -76,7 +78,7 @@ describe("UserRouter", () => {
         it("returns a validation issue if the user's password was not given.", async () => {
             const r = await post(url, missingPassword)
 
-            expect(r.statusCode).toBe(StatusCodes.BAD_REQUEST)
+            expect(r.statusCode).toBe(HttpStatus.BAD_REQUEST)
             expect(r.body[0].kind).toBe("VALIDATION")
             expect(r.body[0].references).toBe("password")
         })
@@ -85,7 +87,7 @@ describe("UserRouter", () => {
             const existing = await post(url, valid)
             const r = await post(url, valid)
 
-            expect(r.statusCode).toBe(StatusCodes.BAD_REQUEST)
+            expect(r.statusCode).toBe(HttpStatus.BAD_REQUEST)
             expect(r.body[0].kind).toBe("CONSTRAINT")
             expect(r.body[0].references).toBe("username")
         })
@@ -111,7 +113,7 @@ describe("UserRouter", () => {
             const r = await post(url, valid)
             vi.restoreAllMocks()
 
-            expect(r.statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR)
+            expect(r.statusCode).toBe(HttpStatus.INTERNAL_SERVER_ERROR)
             expect(r.body[0].kind).toBe("INTERNAL")
         })
     })
@@ -126,7 +128,7 @@ describe("UserRouter", () => {
             const existing = await post("/api/user/register", valid)
             const r = await post(url, { username: valid.username, password: valid.password })
 
-            expect(r.statusCode).toBe(StatusCodes.OK)
+            expect(r.statusCode).toBe(HttpStatus.OK)
             expect(r.body.name).toBe(valid.name)
             expect(r.body.username).toBe(valid.username)
             expect(r.body.id).toBe(existing.body.id)
@@ -136,7 +138,7 @@ describe("UserRouter", () => {
             await post("/api/user/register", valid)
             const r = await post(url, { username: wrongPassword.username, password: wrongPassword.password })
 
-            expect(r.statusCode).toBe(StatusCodes.BAD_REQUEST)
+            expect(r.statusCode).toBe(HttpStatus.BAD_REQUEST)
             expect(r.body[0].kind).toBe("CONSTRAINT")
             expect(r.body[0].references).toBe(wrongPassword.username)
         })
@@ -148,7 +150,7 @@ describe("UserRouter", () => {
             const r = await post(url, valid)
             vi.restoreAllMocks()
 
-            expect(r.statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR)
+            expect(r.statusCode).toBe(HttpStatus.INTERNAL_SERVER_ERROR)
             expect(r.body[0].kind).toBe("INTERNAL")
         })
     })
@@ -161,7 +163,7 @@ describe("UserRouter", () => {
         it("does not authorize logging out if you don't have an active session.", async () => {
             const r = await post(url, {})
 
-            expect(r.statusCode).toBe(StatusCodes.FORBIDDEN)
+            expect(r.statusCode).toBe(HttpStatus.FORBIDDEN)
         })
 
         it("can be called when you have an active session then subsequently you are no longer authorized to logout.", async () => {
@@ -169,10 +171,10 @@ describe("UserRouter", () => {
             await agent.post("/api/user/register").send(valid)
 
             const r = await agent.post(url).send()
-            expect(r.statusCode).toBe(StatusCodes.NO_CONTENT)
+            expect(r.statusCode).toBe(HttpStatus.NO_CONTENT)
 
             const authResponse = await agent.post(url).send()
-            expect(authResponse.statusCode).toBe(StatusCodes.FORBIDDEN)
+            expect(authResponse.statusCode).toBe(HttpStatus.FORBIDDEN)
         })
     })
 })
