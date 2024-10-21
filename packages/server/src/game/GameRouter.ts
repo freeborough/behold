@@ -17,7 +17,9 @@ export function gameRouter(gameStore: ServerGameStore = new GameStorePostgres())
         }
     })
 
-    router.get("/", isAuthenticated, async (request, response) => {
+    // Gets all the games that the authenticated user owns.
+    // TODO: ... or is a player of.
+    router.get("/all", isAuthenticated, async (request, response) => {
         if (request.session.user !== undefined) {
             sendResult(response, await gameStore.findByUserId(request.session.user.id))
         }
