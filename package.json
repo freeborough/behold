@@ -27,7 +27,8 @@
   "homepage": "https://github.com/freeborough/behold#readme",
   "workspaces": [
     "packages/common",
-    "packages/server"
+    "packages/server",
+    "packages/webui"
   ],
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.3",
