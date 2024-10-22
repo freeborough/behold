@@ -1,7 +1,59 @@
+$shadow-normal: 0px 0px 8px #0006;
+
 $main-background: #333;
 $main-foreground: #eee;
 
+$primary-normal: rgb(192, 17, 52);
+
+$app-bar-height: 3rem;
+$app-bar-background: #111;
+
+@font-face {
+    font-family: "Shouldve-Known";
+    src:
+        local("Shouldve-Known"),
+        url("$lib/themes/lurk/fonts/Shouldve-Known.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "IBMPlexSans-Regular";
+    src:
+        local("IBMPlexSans-Regular"),
+        url("$lib/themes/lurk/fonts/IBMPlexSans-Regular.otf") format("opentype");
+}
+
+* {
+    font-family: "IBMPlexSans-Regular";
+}
+
+
 body {
+    margin: 0px;
+    padding: 0px;
     background-color: $main-background;
     color: $main-foreground;
+}
+
+.app-bar {
+    margin: 0px;
+    padding: 0px;
+    background-color: $app-bar-background;
+    height: $app-bar-height;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: $shadow-normal;
+
+    .eyes {
+        height: 80%;
+    }
+
+    h1 {
+        margin: 0px;
+        padding: 0px;
+        font-family: "Shouldve-Known";
+        letter-spacing: .25rem;
+        color: $primary-normal;
+    }
 }

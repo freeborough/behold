@@ -1,1 +1,2 @@
-<h1>Behold VTT</h1>
+<script lang="ts">
+</script>
