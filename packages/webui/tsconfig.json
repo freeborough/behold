@@ -21,9 +21,6 @@
 		"../src/**/*.js",
 		"../src/**/*.ts",
 		"../src/**/*.svelte",
-		"../tests/**/*.js",
-		"../tests/**/*.ts",
-		"../tests/**/*.svelte"
 	],
 	"exclude": [
 		"../node_modules/**",
