@@ -1,0 +1,44 @@
+@use "theme";
+
+.field {
+    margin-top: theme.$space-normal;
+    margin-bottom: theme.$space-normal;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    margin-top: theme.$space-big;
+}
+
+button {
+    font-size: 1rem;
+    background-color: theme.$primary-normal;
+    color: theme.$color-normal;
+    padding: theme.$space-small;
+    padding-left: theme.$space-normal;
+    padding-right: theme.$space-normal;
+    border-top: 1px solid theme.$primary-lighter;
+    border-left: 1px solid theme.$primary-lighter;
+    border-bottom: 1px solid theme.$primary-darker;
+    border-right: 1px solid theme.$primary-darker;
+    margin: 0px theme.$space-small;
+    cursor: pointer;
+
+    &:first-of-type {
+        margin-left: 0px
+    }
+
+    &:last-of-type {
+        margin-right: 0px;
+    }
+
+    &.secondary {
+        background-color: theme.$secondary-normal;
+        border-top: 1px solid theme.$secondary-lighter;
+        border-left: 1px solid theme.$secondary-lighter;
+        border-bottom: 1px solid theme.$secondary-darker;
+        border-right: 1px solid theme.$secondary-darker;
+    }
+}
+

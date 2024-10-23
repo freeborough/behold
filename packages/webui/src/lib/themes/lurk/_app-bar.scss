@@ -1,0 +1,26 @@
+@use "theme";
+
+.app-bar {
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+    background-color: theme.$app-bar-background;
+    height: theme.$app-bar-height;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: theme.$shadow-normal;
+
+    .eyes {
+        height: 80%;
+    }
+
+    h1 {
+        margin: 0px;
+        padding: 0px;
+        font-family: theme.$font-heading;
+        letter-spacing: .25rem;
+        color: theme.$primary-normal;
+    }
+}

@@ -1,0 +1,19 @@
+@use "theme";
+
+* {
+    font-family: theme.$font-normal;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: theme.$background-normal;
+    color: theme.$color-normal;
+    min-height: 100dvh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: theme.$font-heading;
+    letter-spacing: theme.$letter-spacing-heading;
+    margin-top: 0px;
+}

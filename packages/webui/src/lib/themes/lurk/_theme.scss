@@ -1,0 +1,56 @@
+@use "sass:color";
+
+// Spacing
+$space-normal: 1rem;
+$space-big: 2rem;
+$space-biggest: 4rem;
+$space-small: 0.5rem;
+$space-smallest: 0.25rem;
+
+// Colours
+$background-normal: #333;
+$background-darker: #222;
+$background-darkest: #111;
+$background-lighter: #444;
+$background-lightest: #555;
+
+$color-normal: #eee;
+
+$primary-normal: rgb(192, 17, 52);
+$primary-darker: color.scale($primary-normal, $lightness: -40%);
+$primary-lighter: color.scale($primary-normal, $lightness: 40%);
+
+$secondary-normal: purple;
+$secondary-darker: color.scale($secondary-normal, $lightness: -40%);
+$secondary-lighter: color.scale($secondary-normal, $lightness: 40%);
+
+$disabled-normal: #999;
+
+$warning-normal: yellow;
+
+
+// Effects
+$shadow-normal: 0px 0px 8px #0006;
+
+// App Bar
+$app-bar-height: 3rem;
+$app-bar-background: $background-darkest;
+
+// Typography
+$font-heading: "Shouldve-Known";
+$font-normal: "IBMPlexSans-Regular";
+$letter-spacing-heading: .25rem;
+
+@font-face {
+    font-family: "Shouldve-Known";
+    src:
+        local("Shouldve-Known"),
+        url("$lib/themes/lurk/fonts/Shouldve-Known.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "IBMPlexSans-Regular";
+    src:
+        local("IBMPlexSans-Regular"),
+        url("$lib/themes/lurk/fonts/IBMPlexSans-Regular.otf") format("opentype");
+}

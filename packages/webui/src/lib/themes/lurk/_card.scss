@@ -1,0 +1,10 @@
+@use "theme";
+
+.card {
+    padding: theme.$space-big;
+    background-color: theme.$background-lighter;
+    border-left: solid 1px theme.$background-lightest;
+    border-top: solid 1px theme.$background-lightest;
+    border-right: solid 1px theme.$background-darker;
+    border-bottom: solid 1px theme.$background-darker;
+}
