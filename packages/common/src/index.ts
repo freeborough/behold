@@ -7,7 +7,4 @@ export * from "./Piece"
 export * from "./User"
 export * from "./Issue"
 export * from "./Result"
-
-export type Test = {
-    name: string
-}
+export * from "./ClientSession"

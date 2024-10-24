@@ -1,8 +1,25 @@
 import express, { Request, Response } from "express"
+import { StatusCodes } from "http-status-codes"
+import { SessionData } from "express-session"
+
 import { ServerUserStore, UserStorePostgres } from "./UserStorePostgres"
 import { sendResult } from "../util/results"
 import { isAuthenticated } from "../middleware/isAuthenticated"
-import { StatusCodes } from "http-status-codes"
+import { ClientSession } from "common"
+
+// As we use a httpOnly cookie for our session id, we need to create another cookie that the client
+// can use to determine things like whether they're logged in or not.  The server never uses this,
+// it's just for the client.
+//
+// TODO: Can we make this a middleware that we run just before the response is sent?
+function updateClientSession(request: Request, response: Response): Response {
+    const clientSession: ClientSession = {}
+    if (request.session.user !== undefined) {
+        clientSession.user = request.session.user
+    }
+
+    return response.cookie("clientSession", clientSession)
+}
 
 /**
  * Creates and returns an express router that manages a REST API that wraps a UserStore.
@@ -25,7 +42,7 @@ export function userRouter(userStore: ServerUserStore = new UserStorePostgres())
             request.session.user = result.value
         }
 
-        sendResult(response, result)
+        sendResult(updateClientSession(request, response), result)
     })
 
     // Authenticate a user's credentials against the system.
@@ -35,13 +52,14 @@ export function userRouter(userStore: ServerUserStore = new UserStorePostgres())
             request.session.user = result.value
         }
 
-        sendResult(response, result)
+        sendResult(updateClientSession(request, response), result)
     })
 
     // Log the user out.
     router.post("/logout", isAuthenticated, async (request, response) => {
         delete request.session.user
-        response.status(StatusCodes.NO_CONTENT).send()
+
+        updateClientSession(request, response).status(StatusCodes.NO_CONTENT).send()
     })
 
     return router
