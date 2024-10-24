@@ -1,6 +1,12 @@
 <script lang="ts">
+    import type { Snippet } from "svelte"
     import Card from "./Card.svelte"
-    const { children } = $props()
+
+    type DialogProps = {
+        children: Snippet
+    }
+    
+    const { children }: DialogProps = $props()
 </script>
 <div class="dialog">
     <Card>
