@@ -3,13 +3,17 @@
     import Card from "./Card.svelte"
 
     type DialogProps = {
+        title?: string,
         children: Snippet
     }
     
-    const { children }: DialogProps = $props()
+    const { title, children }: DialogProps = $props()
 </script>
 <div class="dialog">
     <Card>
+        {#if title}
+            <h1 class="title">{title}</h1>
+        {/if}
         {@render children()}
     </Card>
 </div>
