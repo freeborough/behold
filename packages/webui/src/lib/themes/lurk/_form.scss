@@ -1,6 +1,6 @@
 @use "theme";
 
-.field {
+.form-field {
     margin-top: theme.$space-normal;
     margin-bottom: theme.$space-normal;
     display: flex;
@@ -57,4 +57,16 @@ label {
     margin-bottom: theme.$space-small;
     margin-top: theme.$space-normal;
     color: theme.$color-normal-darker;
+}
+
+.issues {
+    list-style: none;
+    padding: 0px;
+    color: theme.$warning-normal;
+    margin-bottom: 0px;
+
+    li:before {
+        content: "⚠";
+        margin-right: theme.$space-small;
+    }
 }

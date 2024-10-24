@@ -1,29 +1,69 @@
 <script lang="ts">
     import Dialog from "./Dialog.svelte"
-    import Field from "./Field.svelte"
+    import TextField from "./TextField.svelte"
     import Buttons from "./Buttons.svelte"
+    import { Issue, IssueKind } from "common";
+
+    type RegisterForm = {
+        username: string,
+        name: string,
+        password: string,
+        passwordConfirmation: string,
+    }
+    
+    const issues: Issue[] = $state([])
+
+    const registerForm: RegisterForm = {
+        username: "", name: "", password: "", passwordConfirmation: ""
+    }
+
+    async function register() {
+        issues.push(new Issue("Required.", IssueKind.VALIDATION, "username"))
+        issues.push(new Issue("Required.", IssueKind.VALIDATION, "name"))
+        issues.push(new Issue("Must be a valid email address.", IssueKind.VALIDATION, "username"))
+        issues.push(new Issue("Must match password.", IssueKind.VALIDATION, "passwordConfirmation"))
+        console.log(`Registering: ${registerForm.username}, ${registerForm.name}, ${registerForm.password}, ${registerForm.passwordConfirmation}`)
+    }
 </script>
 <Dialog title="Register">
     <form>
-        <Field>
-            <label for="email">Email <super>*</super></label>
-            <input id="email" type="email" placeholder="your@email.com" />
-        </Field>
-        <Field>
-            <label for="name">Display Name <super>*</super></label>
-            <input id="name" type="text" placeholder="Your Display Name" />
-        </Field>
-        <Field>
-            <label for="password">Password <super>*</super></label>
-            <input id="password" type="password" placeholder="********" />
-        </Field>
-        <Field>
-            <label for="passwordConfirmation">Confirm Password <super>*</super></label>
-            <input id="passwordConfirmation" type="password" placeholder="********" />
-        </Field>
+        <TextField
+            name="username"
+            label="Email"
+            type="email"
+            placeholder="your@email.com"
+            required={true}
+            {issues}
+            bind:value={registerForm.username} />
+
+        <TextField
+            name="name"
+            label="Display Name"
+            placeholder="Your Display Name"
+            required={true}
+            {issues}
+            bind:value={registerForm.name} />
+        
+        <TextField
+            name="password"
+            label="Password"
+            type="password"
+            placeholder="********"
+            required={true}
+            {issues}
+            bind:value={registerForm.password} />
+        
+        <TextField
+            name="passwordConfirmation"
+            label="Confirm Password"
+            type="password"
+            placeholder="********"
+            required={true}
+            {issues}
+            bind:value={registerForm.passwordConfirmation} />
+
         <Buttons>
-            <button class="secondary">Login</button>
-            <button>Register</button>
+            <button onclick={register}>Register</button>
         </Buttons>
     </form>
 </Dialog>
