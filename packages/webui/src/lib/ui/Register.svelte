@@ -1,28 +1,24 @@
 <script lang="ts">
+    import { session } from "$lib/store.svelte"
     import Dialog from "./Dialog.svelte"
     import TextField from "./TextField.svelte"
     import Buttons from "./Buttons.svelte"
-    import { Issue, IssueKind } from "common";
-
-    type RegisterForm = {
-        username: string,
-        name: string,
-        password: string,
-        passwordConfirmation: string,
-    }
+    import { Issue, type UserRegisterClient } from "common"
+    import { UserClient } from "$lib/rest/UserClient"
     
-    const issues: Issue[] = $state([])
+    let issues: Issue[] = $state([])
 
-    const registerForm: RegisterForm = {
+    const registerForm: UserRegisterClient = {
         username: "", name: "", password: "", passwordConfirmation: ""
     }
 
     async function register() {
-        issues.push(new Issue("Required.", IssueKind.VALIDATION, "username"))
-        issues.push(new Issue("Required.", IssueKind.VALIDATION, "name"))
-        issues.push(new Issue("Must be a valid email address.", IssueKind.VALIDATION, "username"))
-        issues.push(new Issue("Must match password.", IssueKind.VALIDATION, "passwordConfirmation"))
-        console.log(`Registering: ${registerForm.username}, ${registerForm.name}, ${registerForm.password}, ${registerForm.passwordConfirmation}`)
+        const result = await UserClient.register(registerForm)
+        if (result.ok) {
+            session.user = result.value
+        } else {
+            issues = result.issues
+        }
     }
 </script>
 <Dialog title="Register">
