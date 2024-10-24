@@ -5,4 +5,6 @@
     import AppBar from "$lib/ui/AppBar.svelte"
 </script>
 <AppBar />
-{@render children()}
+<div class="page">
+    {@render children()}
+</div>

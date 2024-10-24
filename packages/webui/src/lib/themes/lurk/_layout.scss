@@ -1,5 +1,9 @@
 @use "theme";
 
+.page {
+    padding-top: theme.$app-bar-height;
+}
+
 .dialog {
     display: flex;
     align-items: center;
