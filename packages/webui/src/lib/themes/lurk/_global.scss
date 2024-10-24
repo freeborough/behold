@@ -14,6 +14,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: theme.$font-heading;
-    letter-spacing: theme.$letter-spacing-heading;
     margin-top: 0px;
+    text-transform: theme.$text-transform-heading;
 }

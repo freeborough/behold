@@ -38,9 +38,10 @@ $app-bar-height: 3rem;
 $app-bar-background: $background-darkest;
 
 // Typography
-$font-heading: "Shouldve-Known";
-$font-normal: "IBMPlexSans-Regular";
-$letter-spacing-heading: .25rem;
+$font-heading: "Inter-Regular";
+$text-transform-heading: uppercase;
+$font-normal: "Inter-Regular";
+$font-logo: "Shouldve-Known";
 
 @font-face {
     font-family: "Shouldve-Known";
@@ -50,8 +51,8 @@ $letter-spacing-heading: .25rem;
 }
 
 @font-face {
-    font-family: "IBMPlexSans-Regular";
+    font-family: "Inter-Regular";
     src:
-        local("IBMPlexSans-Regular"),
-        url("$lib/themes/lurk/fonts/IBMPlexSans-Regular.otf") format("opentype");
+        local("Inter-Regular"),
+        url("$lib/themes/lurk/fonts/Inter-Regular.otf") format("opentype");
 }
