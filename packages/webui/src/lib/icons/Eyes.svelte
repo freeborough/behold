@@ -6,8 +6,8 @@
     </defs>
   
     <g clip-path="url(#brow)" id="eyeballs">
-      <circle cx="20" cy="15" r="20" fill="red" />
-      <circle cx="50" cy="15" r="20" fill="red" />
+      <circle cx="20" cy="15" r="20" fill="yellow" />
+      <circle cx="50" cy="15" r="20" fill="yellow" />
       <circle cx="20" cy="18" r="6" fill="black" />
       <circle cx="50" cy="18" r="6" fill="black" />
     </g>

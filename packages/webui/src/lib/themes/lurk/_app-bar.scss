@@ -22,5 +22,6 @@
         font-family: theme.$font-logo;
         letter-spacing: .25rem;
         color: theme.$primary-normal;
+        font-size: theme.$app-bar-height * 0.6;
     }
 }

@@ -8,11 +8,15 @@
 }
 
 .buttons {
-    margin-top: theme.$space-big;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: theme.$space-biggest;
+    
 }
 
 button {
-    font-size: 1rem;
+    font-size: theme.$font-size;
     background-color: theme.$primary-normal;
     color: theme.$color-normal;
     padding: theme.$space-small;
@@ -24,6 +28,7 @@ button {
     border-right: 1px solid theme.$primary-darker;
     margin: 0px theme.$space-small;
     cursor: pointer;
+    text-transform: uppercase;
 
     &:first-of-type {
         margin-left: 0px
@@ -42,3 +47,14 @@ button {
     }
 }
 
+input {
+    font-size: theme.$font-size;
+    padding: theme.$space-small;
+}
+
+label {
+    font-size: 0.9rem;
+    margin-bottom: theme.$space-small;
+    margin-top: theme.$space-normal;
+    color: theme.$color-normal-darker;
+}

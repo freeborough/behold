@@ -15,6 +15,10 @@ $background-lighter: #444;
 $background-lightest: #555;
 
 $color-normal: #eee;
+$color-normal-darker: #ccc;
+$color-normal-darkest: #aaa;
+
+$color-heading: yellow;
 
 $primary-normal: rgb(192, 17, 52);
 $primary-darker: color.scale($primary-normal, $lightness: -40%);
@@ -26,7 +30,7 @@ $secondary-lighter: color.scale($secondary-normal, $lightness: 40%);
 
 $disabled-normal: #999;
 
-$warning-normal: yellow;
+$warning-normal: $color-heading;
 
 
 // Effects
@@ -38,6 +42,8 @@ $app-bar-height: 3rem;
 $app-bar-background: $background-darkest;
 
 // Typography
+$font-size: 16px;
+
 $font-heading: "Inter-Regular";
 $text-transform-heading: uppercase;
 $font-normal: "Inter-Regular";

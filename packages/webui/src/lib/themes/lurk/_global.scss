@@ -10,9 +10,11 @@ body {
     background-color: theme.$background-normal;
     color: theme.$color-normal;
     min-height: 100dvh;
+    font-size: theme.$font-size;
 }
 
 h1, h2, h3, h4, h5, h6 {
+    color: theme.$color-heading;
     font-family: theme.$font-heading;
     margin-top: 0px;
     text-transform: theme.$text-transform-heading;
