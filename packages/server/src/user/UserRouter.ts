@@ -59,7 +59,7 @@ export function userRouter(userStore: ServerUserStore = new UserStorePostgres())
     router.post("/logout", isAuthenticated, async (request, response) => {
         delete request.session.user
 
-        updateClientSession(request, response).status(StatusCodes.NO_CONTENT).send()
+        updateClientSession(request, response).status(StatusCodes.NO_CONTENT).end()
     })
 
     return router
