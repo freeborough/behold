@@ -43,12 +43,28 @@ describe("UserRouter", () => {
             expect(r.body.id).toMatch(uuidRegex)
         })
 
-        it("sets a session cookie when valid details are posted.", async () => {
+        it("sets session and clientSession cookies when valid details are posted.", async () => {
             const agent = request.agent(app)
             const r = await agent.post(url).send(valid)
 
+            console.log(r.headers["set-cookie"])
+
+            // As Request.headers["set-cookie"] type is defined as string, but is actually string[]
+            // when multiple cookies are set in one response, we need to cooerce things a little.
+            // We don't want the expect's within an if block that might be missed, so instead we
+            // pull them out with the regular expression to check they're valid, then chech that
+            // those variables are defined in our expect - thus achieving the same result.
+            let sessionCookie
+            let clientSessionCookie
+
+            if (Array.isArray(r.headers["set-cookie"])) {
+                sessionCookie = r.headers["set-cookie"].find(c => c.match(/^session=.*; Path=\/; HttpOnly$/))
+                clientSessionCookie = r.headers["set-cookie"].find(c => c.match(/^clientSession=.*; Path=\/$/))
+            }
+
             expect(r.headers["set-cookie"]).toBeDefined()
-            expect(r.headers["set-cookie"][0]).toMatch(/^session=.*; Path=\/; HttpOnly$/)
+            expect(sessionCookie).toBeDefined()
+            expect(clientSessionCookie).toBeDefined()
         })
 
         it("returns a validation issue if the username (email) was malformed.", async () => {
