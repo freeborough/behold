@@ -47,8 +47,6 @@ describe("UserRouter", () => {
             const agent = request.agent(app)
             const r = await agent.post(url).send(valid)
 
-            console.log(r.headers["set-cookie"])
-
             // As Request.headers["set-cookie"] type is defined as string, but is actually string[]
             // when multiple cookies are set in one response, we need to cooerce things a little.
             // We don't want the expect's within an if block that might be missed, so instead we
