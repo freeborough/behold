@@ -132,14 +132,15 @@ describe("UserRouter", () => {
         })
     })
 
-    describe("authenticate", async () => {
-        const url = "/api/user/authenticate"
+    describe("login", async () => {
+        const url = "/api/user/login"
 
         const valid = { name: "Bilbo Baggins", username: "bilbo@baggins.com", password: "Prec1ous!" }
         const wrongPassword = { name: valid.name, username: valid.username, password: "thereandback" }
 
         it("returns the user's id, name, and username when valid credentials are given.", async() => {
             const existing = await post("/api/user/register", valid)
+            console.log("REGISTERED")
             const r = await post(url, { username: valid.username, password: valid.password })
 
             expect(r.statusCode).toBe(HttpStatus.OK)

@@ -12,7 +12,7 @@ const SALT_LENGTH = 10
 
 export interface ServerUserStore {
     register(newUser: UserRegister): Promise<Result<User>>
-    authenticate(login: UserLogin): Promise<Result<User>>
+    login(login: UserLogin): Promise<Result<User>>
 }
 
 /**
@@ -72,7 +72,7 @@ export class UserStorePostgres implements ServerUserStore {
      *   password: "Prec!ous"
      * })
      */
-    async authenticate(login: UserLogin): Promise<Result<User>> {
+    async login(login: UserLogin): Promise<Result<User>> {
         try {
             const parsed = UserLoginSchema.parse(login)
             const result = await sql<UserRecord[]>`

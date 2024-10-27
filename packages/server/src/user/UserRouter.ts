@@ -46,8 +46,8 @@ export function userRouter(userStore: ServerUserStore = new UserStorePostgres())
     })
 
     // Authenticate a user's credentials against the system.
-    router.post("/authenticate", async (request, response) => {
-        const result = await userStore.authenticate(request.body)
+    router.post("/login", async (request, response) => {
+        const result = await userStore.login(request.body)
         if (result.ok) {
             request.session.user = result.value
         }
