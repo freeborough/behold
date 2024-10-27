@@ -13,14 +13,18 @@
         username: "", name: "", password: "", passwordConfirmation: ""
     }
 
+    function login() {
+        requestAnimationFrame(() => goto("/login"))
+    }
+
     async function register() {
         const result = await UserClient.register(registerForm)
         if (result.ok) {
             session.user = result.value
+            requestAnimationFrame(() => goto("/play"))
         } else {
             issues = result.issues
         }
-        goto("/play")
     }
 </script>
 <Dialog title="Register">
@@ -61,7 +65,8 @@
             bind:value={registerForm.passwordConfirmation} />
 
         <Buttons>
-            <button onclick={register}>Register!</button>
+            <button class="secondary" onclick={login}>Login</button>
+            <button onclick={register}>Register</button>
         </Buttons>
     </form>
 </Dialog>
