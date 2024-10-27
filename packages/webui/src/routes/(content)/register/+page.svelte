@@ -1,9 +1,10 @@
 <script lang="ts">
+    import { goto } from "$app/navigation"
+    import { Issue, type UserRegisterClient } from "common"
     import { session } from "$lib/store.svelte"
     import Dialog from "$lib/ui/Dialog.svelte"
     import TextField from "$lib/ui/TextField.svelte"
     import Buttons from "$lib/ui/Buttons.svelte"
-    import { Issue, type UserRegisterClient } from "common"
     import { UserClient } from "$lib/rest/UserClient"
     
     let issues: Issue[] = $state([])
@@ -19,6 +20,7 @@
         } else {
             issues = result.issues
         }
+        goto("/play")
     }
 </script>
 <Dialog title="Register">
@@ -59,7 +61,7 @@
             bind:value={registerForm.passwordConfirmation} />
 
         <Buttons>
-            <button onclick={register}>Register</button>
+            <button onclick={register}>Register!</button>
         </Buttons>
     </form>
 </Dialog>
