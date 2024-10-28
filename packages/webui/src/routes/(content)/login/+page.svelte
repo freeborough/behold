@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { goto } from "$app/navigation"
+    import { goto } from "$lib/util/navigation"
     import { Issue, type UserLogin } from "common"
     import { session } from "$lib/store.svelte"
     import Dialog from "$lib/ui/Dialog.svelte"
@@ -12,14 +12,14 @@
     const loginForm: UserLogin = { username: "", password: "" }
 
     async function register() {
-        requestAnimationFrame(() => goto("/register"))
+        goto("/register")
     }
 
     async function login() {
         const result = await UserClient.login(loginForm)
         if (result.ok) {
             session.user = result.value
-            requestAnimationFrame(() => goto("/play"))
+            goto("/play")
         } else {
             issues = result.issues
         }
