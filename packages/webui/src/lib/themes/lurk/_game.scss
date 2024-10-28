@@ -1,0 +1,16 @@
+@use "theme";
+
+.games {
+    margin-top: theme.$space-big;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: theme.$space-normal;
+    align-items: stretch;
+
+    .game {
+        flex-grow: 1;
+        flex-basis: 300px;
+    }
+}
