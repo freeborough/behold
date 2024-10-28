@@ -5,6 +5,11 @@
     margin-bottom: theme.$space-normal;
     display: flex;
     flex-direction: column;
+
+    .required-symbol {
+        margin-left: theme.$space-small;
+        color: theme.$warning-normal;
+    }
 }
 
 .buttons {
