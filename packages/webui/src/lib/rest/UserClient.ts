@@ -1,6 +1,5 @@
-import { z } from "zod"
 import type { Result, UserRegisterClient, UserLogin, User } from "common"
-import { ok, issue, Issue, IssueKind, UserRegisterClientSchema, UserLoginSchema, zodToIssue } from "common"
+import { issue, UserRegisterClientSchema, UserLoginSchema } from "common"
 import { clientErrorToIssue } from "$lib/util/results"
 import { post } from "$lib/rest/common"
 
