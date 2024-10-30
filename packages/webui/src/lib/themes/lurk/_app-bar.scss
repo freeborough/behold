@@ -24,4 +24,10 @@
         color: theme.$primary-normal;
         font-size: theme.$app-bar-height * 0.6;
     }
+
+    .user {
+        position: absolute;
+        display: block;
+        right: theme.$space-normal;
+    }
 }
