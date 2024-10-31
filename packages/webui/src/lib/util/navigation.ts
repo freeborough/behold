@@ -12,3 +12,10 @@ import { goto as navGoto } from "$app/navigation"
 export function goto(url: string | URL) {
     requestAnimationFrame(() => navGoto(url))
 }
+
+/**
+ * Go to the login page with the current URL passed as a redirect param to it.
+ */
+export function gotoLogin() {
+    goto(`/login?redirect=${encodeURIComponent(document.location.pathname)}`)
+}

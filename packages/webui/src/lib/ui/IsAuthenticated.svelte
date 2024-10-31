@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, type Snippet } from "svelte"
     import { browser } from "$app/environment"
-    import { goto } from "$lib/util/navigation"
+    import { goto, gotoLogin } from "$lib/util/navigation"
     import { getSession } from "$lib/util/session"
 
     type IsAuthenticatedProps = {
@@ -16,7 +16,7 @@
         if (browser) {
             const session = getSession()
             if (session == undefined || session.user == undefined) {
-                goto(`/login?redirect=${encodeURIComponent(document.location.pathname)}`)
+                gotoLogin()
             } else {
                 authenticated = true
             }
