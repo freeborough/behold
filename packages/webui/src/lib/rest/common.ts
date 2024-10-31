@@ -20,3 +20,7 @@ export async function jsonFetch<T>(method: string, url: string | URL, parsedData
 export async function post<T>(url: string | URL, parsedData: any): Promise<Result<T>> {
     return await jsonFetch<T>("POST", url, parsedData)
 }
+
+export async function get<T>(url: string | URL, parsedData: any): Promise<Result<T>> {
+    return await jsonFetch<T>("GET", url, parsedData)
+}
