@@ -1,8 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte"
+    import type { ClientSession } from "common"
     import Eyes from "$lib/icons/Eyes.svelte"
     import { getSession } from "$lib/util/session"
-    import type { ClientSession } from "common"
+    import IsAuthenticated from "./IsAuthenticated.svelte"
 
     let session: ClientSession
 
@@ -13,7 +14,7 @@
 <div class="app-bar">
     <Eyes />
     <h1>Behold VTT</h1>
-    {#if session?.user}
-        <div class="user">{session.user.name}</div>
-    {/if}
+    <IsAuthenticated>
+        <div class="user">{session?.user?.name}</div>
+    </IsAuthenticated>
 </div>

@@ -1,7 +1,8 @@
 <script lang="ts">
+    import type { Game } from "common"
+    import IsAuthenticated from "$lib/ui/IsAuthenticated.svelte"
     import Buttons from "$lib/ui/Buttons.svelte"
-    import GameSummary from "$lib/ui/GameSummary.svelte"
-    import type { Game } from "common";
+    import GameSummary from "$lib/ui/GameSummary.svelte"   
 
     // DEBUG: Dummy data.
     const games: Game[] = [
@@ -42,18 +43,19 @@
         },
     ]
 </script>
-
-<div class="content">
-    <h1>Play</h1>
-    <Buttons>
-        <button>Create New Game</button>
-        <button class="secondary">Enter Invite Code</button>
-    </Buttons>
-    {#if games.length > 0}
-        <div class="games">
-            {#each games as game}
-                <GameSummary {game} />
-            {/each}
-        </div>
-    {/if}
-</div>
+<IsAuthenticated>
+    <div class="content">
+        <h1>Play</h1>
+        <Buttons>
+            <button>Create New Game</button>
+            <button class="secondary">Enter Invite Code</button>
+        </Buttons>
+        {#if games.length > 0}
+            <div class="games">
+                {#each games as game}
+                    <GameSummary {game} />
+                {/each}
+            </div>
+        {/if}
+    </div>
+</IsAuthenticated>
