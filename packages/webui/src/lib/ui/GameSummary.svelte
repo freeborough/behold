@@ -19,7 +19,7 @@
     const { game }: GameSummaryProps = $props()
 
     function join() {
-        goto(`/play/${game.slug}/`)
+        goto(`/games/play/${game.slug}/`)
     }
 </script>
 <div class="game">
