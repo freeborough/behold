@@ -19,7 +19,7 @@
         const result = await UserClient.login(loginForm)
         if (result.ok) {
             session.user = result.value
-            goto("/play")
+            goto("/games")
         } else {
             issues = result.issues
         }
