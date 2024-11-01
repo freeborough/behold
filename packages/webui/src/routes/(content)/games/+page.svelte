@@ -6,7 +6,7 @@
     import GameSummary from "$lib/ui/GameSummary.svelte"   
 </script>
 <IsAuthenticated>
-    <h1>Play</h1>
+    <h1>Games</h1>
     <Buttons>
         <button>Create New Game</button>
         <button class="secondary">Enter Invite Code</button>
