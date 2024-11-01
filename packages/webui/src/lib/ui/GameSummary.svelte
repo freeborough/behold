@@ -1,16 +1,11 @@
 <script lang="ts">
-    import { type Game, type User } from "common"
+    import { type ClientSession, type Game } from "common"
     import { goto } from "$lib/util/navigation"
+    import { getSession } from "$lib/util/session"
     import Card from "$lib/ui/Card.svelte"
     import Buttons from "$lib/ui/Buttons.svelte"
 
-    // DEBUG: Dummy data.
-    // TODO: Get from clientSession cookie (create a function to do so).
-    const user: User = {
-        id: "123",
-        name: "Bilbo Baggins",
-        username: "bilbo@baggins.com",
-    }
+    const session: ClientSession = getSession()
 
     type GameSummaryProps = {
         game: Game
@@ -27,7 +22,7 @@
         <h2>{game.name}</h2>
         <p>{game.description}</p>
         <Buttons>
-            {#if game.owner_id === user.id}
+            {#if session?.user != undefined && game.owner_id === session?.user?.id}
                 <button class="secondary">Delete</button>
             {:else}
                 <button class="secondary">Withdraw</button>
